@@ -6,7 +6,7 @@
   align-items: center;
   text-align: center;
   padding: 0 2rem;
-  padding-top: 70px; /* Offset for navbar */
+  padding-top: 54px; /* Offset for navbar */
 }
 
 .hero-title {
@@ -51,6 +51,8 @@
 .cta-primary:hover {
   background-color: #333;
   border-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .cta-secondary {
@@ -61,6 +63,8 @@
 
 .cta-secondary:hover {
   border-color: var(--text-color);
+  background-color: rgba(0,0,0,0.02);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

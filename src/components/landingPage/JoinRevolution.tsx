@@ -16,7 +16,7 @@ const JoinRevolution: React.FC = () => {
     gsap.fromTo(circleRef.current,
       { scale: 0 },
       {
-        scale: 20, // Expands to fill screen
+        scale: 50, // Increased scale to ensure full coverage on large screens
         ease: "power2.inOut",
         scrollTrigger: {
           trigger: containerRef.current,

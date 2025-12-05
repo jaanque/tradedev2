@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
   border-bottom: 1px solid var(--border-color);
   position: fixed;
   top: 0;
@@ -11,7 +11,7 @@
   background: #fafafa;
   /* backdrop-filter: blur(10px); removed to keep solid color consistent */
   z-index: 1000;
-  height: 70px;
+  height: 54px;
 }
 
 .navbar-logo {
