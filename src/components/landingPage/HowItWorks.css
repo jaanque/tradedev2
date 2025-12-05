@@ -3,7 +3,7 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #f9f9f9; /* Light theme */
+  background-color: #f9f9f9;
   color: #1a1a1a;
 }
 
@@ -29,6 +29,7 @@
   white-space: nowrap;
   color: #1a1a1a;
   letter-spacing: -0.05em;
+  opacity: 1;
 }
 
 /* Horizontal Scroll Container */
@@ -42,59 +43,71 @@
 }
 
 .hiw-card {
-  width: 50vw; /* Slightly narrower for better focus */
-  max-width: 600px;
+  width: 40vw; /* Narrower for more "creative" look */
+  max-width: 500px;
   flex-shrink: 0;
   background: #fff;
-  border-radius: 24px;
+  border-radius: 32px; /* Softer */
   padding: 4rem;
-  margin-right: 5vw;
-  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); /* Soft, professional shadow */
+  margin-right: 8vw;
+  box-shadow:
+    0 30px 60px -20px rgba(0,0,0,0.08),
+    0 0 0 1px rgba(0,0,0,0.02);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   transition: transform 0.3s ease;
-  border: 1px solid rgba(0,0,0,0.03);
+  position: relative;
+  z-index: 5;
+}
+
+/* Connecting Line (simulated with pseudo-element or separate div) */
+.hiw-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1000vw; /* super long */
+  height: 2px;
+  background: #e0e0e0;
+  z-index: 0;
+  transform: translateY(-50%);
 }
 
 .hiw-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.1);
+  transform: translateY(-15px) rotate(2deg);
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.12);
 }
 
 .hiw-num {
-  font-size: 1.2rem;
-  color: #999;
-  margin-bottom: 2rem;
-  font-family: 'Inter', monospace;
-  font-weight: 600;
+  font-size: 4rem;
+  color: #f0f0f0;
+  margin-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  line-height: 1;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
 }
 
 .hiw-card-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.1;
   color: #000;
   letter-spacing: -0.03em;
+  position: relative;
+  z-index: 2;
 }
 
 .hiw-card-text {
-  font-size: 1.25rem;
-  color: #555;
+  font-size: 1.1rem;
+  color: #666;
   font-weight: 400;
   line-height: 1.6;
-}
-
-/* Progress Bar at bottom */
-.hiw-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 6px;
-  background: #000;
-  width: 0%; /* Will be animated */
-  z-index: 20;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
@@ -103,12 +116,9 @@
   }
   .hiw-card {
     width: 85vw;
-    padding: 2rem;
+    padding: 2.5rem;
   }
   .hiw-card-title {
-    font-size: 2.5rem;
-  }
-  .hiw-card-text {
-    font-size: 1.1rem;
+    font-size: 2rem;
   }
 }

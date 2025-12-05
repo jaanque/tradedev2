@@ -33,20 +33,16 @@ const HowItWorks: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const section = sectionRef.current;
     const container = containerRef.current;
     const title = titleRef.current;
-    const progressBar = progressRef.current;
 
     if (!section || !container || !title) return;
 
     const totalWidth = container.scrollWidth;
     const viewportWidth = window.innerWidth;
-
-    // We scroll until the end of the container aligns with right side of screen.
     const xMovement = -(totalWidth - viewportWidth);
 
     const tl = gsap.timeline({
@@ -54,13 +50,13 @@ const HowItWorks: React.FC = () => {
         trigger: section,
         pin: true,
         scrub: 1,
-        end: "+=" + (totalWidth + viewportWidth * 0.5), // Adjusted distance
+        end: "+=" + (totalWidth + viewportWidth * 0.5),
       }
     });
 
     // Phase 1: Reveal content by fading out title
     tl.to(title, {
-      scale: 1.2, // Subtle scale
+      scale: 0.8,
       opacity: 0,
       filter: "blur(20px)",
       duration: 1,
@@ -71,20 +67,29 @@ const HowItWorks: React.FC = () => {
       x: xMovement,
       ease: "none",
       duration: 5
-    }, "-=0.8") // Overlap significantly
+    }, "-=0.5");
 
-    // Progress Bar Animation
-    .to(progressBar, {
-      width: "100%",
-      ease: "none",
-      duration: 6 // Matches total duration roughly
-    }, 0);
+    // Animate cards individually for a parallax/stagger effect while scrolling
+    gsap.utils.toArray<HTMLElement>('.hiw-card').forEach((card, i) => {
+        gsap.to(card, {
+            y: "random(-30, 30)",
+            rotation: "random(-2, 2)",
+            scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "bottom top",
+                scrub: 2
+            }
+        });
+    });
 
   }, { scope: sectionRef });
 
   return (
     <section className="how-it-works" ref={sectionRef}>
-      <div className="hiw-progress" ref={progressRef}></div>
+      {/* Decorative Line in Background */}
+      <div className="hiw-line"></div>
+
       <div className="hiw-intro">
         <h2 className="hiw-intro-title" ref={titleRef}>
           How It Works

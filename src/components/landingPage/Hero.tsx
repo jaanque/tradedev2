@@ -1,10 +1,37 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import './Hero.css';
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  // Keyboard Interaction
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+        // Accelerate or shift based on key
+        if(e.key === "ArrowRight") {
+            gsap.to(gridRef.current, { rotationY: "+=5", duration: 0.5 });
+            gsap.to('.hero-bg-blob', { x: "+=50", duration: 1, ease: "power2.out" });
+        }
+        if(e.key === "ArrowLeft") {
+            gsap.to(gridRef.current, { rotationY: "-=5", duration: 0.5 });
+            gsap.to('.hero-bg-blob', { x: "-=50", duration: 1, ease: "power2.out" });
+        }
+        if(e.key === "ArrowUp") {
+             gsap.to(gridRef.current, { rotationX: "+=5", duration: 0.5 });
+             gsap.to('.hero-bg-blob', { y: "-=50", duration: 1, ease: "power2.out" });
+        }
+        if(e.key === "ArrowDown") {
+             gsap.to(gridRef.current, { rotationX: "-=5", duration: 0.5 });
+             gsap.to('.hero-bg-blob', { y: "+=50", duration: 1, ease: "power2.out" });
+        }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useGSAP(() => {
     // Subtle background animation
@@ -38,7 +65,7 @@ const Hero: React.FC = () => {
   return (
     <section className="hero" ref={containerRef}>
       <div className="hero-background">
-        <div className="hero-grid"></div> {/* New Grid Background */}
+        <div className="hero-grid" ref={gridRef}></div> {/* New Grid Background */}
         <div className="hero-bg-blob blob-1"></div>
         <div className="hero-bg-blob blob-2"></div>
         <div className="hero-bg-blob blob-3"></div>

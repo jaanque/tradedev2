@@ -1,111 +1,132 @@
 .market-leaderboard {
-  padding: 8rem 2rem;
+  padding: 8rem 4rem;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .leaderboard-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .leaderboard-header h2 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
   color: #1a1a1a;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .leaderboard-header p {
   color: #666;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .leaderboard-container {
   width: 100%;
-  max-width: 900px;
-  background: #fff;
-  border-radius: 24px;
-  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+  max-width: 1400px; /* Significantly wider */
+  background: rgba(255, 255, 255, 0.8); /* Glassmorphic base */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 32px;
+  box-shadow:
+    0 40px 80px -20px rgba(0,0,0,0.08),
+    0 0 0 1px rgba(255,255,255,0.5) inset;
   overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.02);
+  position: relative;
+  z-index: 2;
 }
 
 .leaderboard-row {
   display: grid;
   grid-template-columns: 0.5fr 3fr 1.5fr 1.5fr;
-  padding: 1.5rem 2rem;
+  padding: 2rem 3rem;
   align-items: center;
-  border-bottom: 1px solid #f0f0f0;
-  transition: background-color 0.2s;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
 }
 
 .leaderboard-row:last-child {
   border-bottom: none;
 }
 
-.leaderboard-row:hover {
-  background-color: #fcfcfc;
+.leaderboard-row.content:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.005);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+  z-index: 5;
 }
 
 .lb-head {
-  font-weight: 600;
-  color: #888;
-  font-size: 0.9rem;
+  font-weight: 700;
+  color: #999;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  background: rgba(250,250,250,0.9);
 }
 
 .lb-rank {
   font-weight: 700;
-  color: #ccc;
-  font-size: 1.2rem;
-  font-family: monospace;
+  color: #d1d1d1;
+  font-size: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.05em;
 }
 
 .lb-user {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .lb-avatar {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: #eee;
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
+  font-weight: 700;
   color: #555;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .lb-info {
   display: flex;
   flex-direction: column;
+  gap: 0.2rem;
 }
 
 .lb-name {
-  font-weight: 600;
+  font-weight: 700;
   color: #1a1a1a;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .lb-handle {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: #888;
 }
 
 .lb-price {
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1.3rem;
   color: #1a1a1a;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
 }
 
 .lb-change {
@@ -113,48 +134,56 @@
   font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 100px;
 }
 
 .change-positive {
   color: #00ba7c;
-  background: rgba(0, 186, 124, 0.1);
-  padding: 0.3rem 0.6rem;
-  border-radius: 20px;
-  width: fit-content;
+  background: rgba(0, 186, 124, 0.12);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
 }
 
 .change-negative {
   color: #f91880;
-  background: rgba(249, 24, 128, 0.1);
-  padding: 0.3rem 0.6rem;
-  border-radius: 20px;
-  width: fit-content;
+  background: rgba(249, 24, 128, 0.12);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+}
+
+@media (max-width: 1024px) {
+    .market-leaderboard {
+        padding: 6rem 2rem;
+    }
 }
 
 @media (max-width: 768px) {
   .leaderboard-header h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   .leaderboard-container {
     width: 100%;
-    border-radius: 0;
+    border-radius: 20px;
   }
   .leaderboard-row {
-    grid-template-columns: 0.5fr 2fr 1fr;
-    padding: 1rem;
-    gap: 0.5rem;
+    grid-template-columns: 0.3fr 2fr 1fr;
+    padding: 1.5rem;
+    gap: 1rem;
   }
   .lb-change {
-    display: none; /* Hide on small mobile to save space, or adjust grid */
-  }
-  /* Show change in a different way or keep it if space allows.
-     Let's adjust grid instead of hiding */
-  .leaderboard-row {
-    grid-template-columns: 0.3fr 2fr 1fr 1fr;
+    display: none; /* Hide for cleanliness on mobile */
   }
   .lb-avatar {
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+  }
+  .lb-name {
+      font-size: 1.1rem;
+  }
+  .lb-price {
+      font-size: 1.1rem;
   }
 }

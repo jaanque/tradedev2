@@ -12,22 +12,39 @@ const leaderboardData = [
   { rank: 3, name: "Jessica Create", handle: "@jess_create", price: "88.75 TK", change: "-2.1%", isPositive: false },
   { rank: 4, name: "Tom Coder", handle: "@tom_code", price: "76.40 TK", change: "+5.4%", isPositive: true },
   { rank: 5, name: "Emma Art", handle: "@emma_art", price: "67.10 TK", change: "+15.0%", isPositive: true },
+  { rank: 6, name: "David Product", handle: "@david_pm", price: "55.30 TK", change: "+1.2%", isPositive: true },
 ];
 
 const MarketLeaderboard: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Animate rows entering
+    // Animate rows entering with a slight rotation for 3D feel
     gsap.from('.leaderboard-row.content', {
-      y: 30,
+      y: 50,
       opacity: 0,
-      duration: 0.6,
+      rotationX: -10,
+      transformPerspective: 1000,
+      duration: 0.8,
       stagger: 0.1,
-      ease: "power2.out",
+      ease: "power3.out",
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 70%",
+        start: "top 75%",
+      }
+    });
+
+    // Pulse animation for positive changes
+    gsap.to('.change-positive', {
+      scale: 1.05,
+      opacity: 0.8,
+      duration: 1.5,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut",
+      stagger: {
+        amount: 1,
+        from: "random"
       }
     });
 
@@ -46,7 +63,7 @@ const MarketLeaderboard: React.FC = () => {
           <span>#</span>
           <span>Creator</span>
           <span>Price</span>
-          <span>24h Change</span>
+          <span className="mobile-hide">24h Change</span>
         </div>
 
         {/* Data Rows */}
@@ -61,7 +78,7 @@ const MarketLeaderboard: React.FC = () => {
               </div>
             </div>
             <span className="lb-price">{user.price}</span>
-            <div className={`lb-change ${user.isPositive ? 'change-positive' : 'change-negative'}`}>
+            <div className={`lb-change ${user.isPositive ? 'change-positive' : 'change-negative'} mobile-hide`}>
               {user.change}
             </div>
           </div>
