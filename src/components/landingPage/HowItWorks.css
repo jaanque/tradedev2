@@ -22,8 +22,8 @@
 
 .hiw-title-inner {
   width: 100%;
-  max-width: 1200px;
-  padding: 0 2rem;
+  max-width: 100%; /* Full width */
+  padding: 0 4rem; /* Match other sections padding */
 }
 
 .hiw-title-static {
@@ -57,7 +57,7 @@
 }
 
 .hiw-card-title {
-  font-size: 5rem;
+  font-size: 6vw; /* Responsive font size */
   font-weight: 600;
   margin-bottom: 2rem;
   line-height: 1;
@@ -65,12 +65,15 @@
 
 .hiw-card-text {
   font-size: 1.5rem;
-  max-width: 500px;
+  max-width: 600px; /* Still limit text width for readability */
   color: rgba(255, 255, 255, 0.8);
   font-weight: 300;
 }
 
 @media (max-width: 768px) {
+  .hiw-title-inner {
+    padding: 0 1.5rem;
+  }
   .hiw-card-title {
     font-size: 3rem;
   }
