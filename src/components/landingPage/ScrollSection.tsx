@@ -15,14 +15,21 @@ const ScrollSection: React.FC = () => {
     if (!text) return;
 
     // Use xPercent for responsive movement
+    // Increased movement for dynamic feel
     gsap.to(text, {
-      xPercent: -30, // Move left by 30% of its width
+      xPercent: -20,
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1,
+        scrub: 0, // Instant reaction to velocity
+        onUpdate: (self) => {
+          // Add velocity skew
+          const velocity = self.getVelocity();
+          const skew = velocity / 300;
+          gsap.to(text, { skewX: -skew, duration: 0.1, overwrite: 'auto' });
+        }
       },
     });
   }, { scope: containerRef });

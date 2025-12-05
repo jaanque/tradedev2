@@ -1,12 +1,16 @@
 import React, { useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import './Hero.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Mouse Interaction
   useEffect(() => {
@@ -42,6 +46,21 @@ const Hero: React.FC = () => {
   }, []);
 
   useGSAP(() => {
+    // Parallax Exit on Scroll
+    gsap.to(contentRef.current, {
+      yPercent: 50, // Move down
+      opacity: 0,   // Fade out
+      scale: 0.9,   // Shrink slightly
+      filter: "blur(10px)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
     // Continuous subtle background animation
     gsap.to('.hero-bg-blob', {
       scale: "random(0.8, 1.2)",
@@ -106,7 +125,7 @@ const Hero: React.FC = () => {
         <div className="hero-bg-blob blob-3"></div>
       </div>
 
-      <div className="hero-content">
+      <div className="hero-content" ref={contentRef}>
         <h1 className="hero-title">
           Invierte en Personas,<br />
           No Solo en Empresas.

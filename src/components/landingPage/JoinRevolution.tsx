@@ -17,34 +17,34 @@ const JoinRevolution: React.FC = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top top", // Starts when section hits top of viewport
-        end: "+=150%", // Pins for 1.5x viewport height
+        start: "top top",
+        end: "+=150%",
         pin: true,
         scrub: 1,
         anticipatePin: 1
       }
     });
 
-    // 1. Expand Circle to fill screen
+    // 1. Expand Circle - Use expo.inOut for dramatic effect
     tl.fromTo(circleRef.current,
       { scale: 0 },
       {
         scale: 150,
         duration: 2,
-        ease: "power2.inOut",
+        ease: "expo.inOut",
       }
     );
 
-    // 2. Reveal Text
+    // 2. Reveal Text - Slightly earlier overlap for continuity
     tl.fromTo(contentRef.current,
-      { opacity: 0, y: 50 },
+      { opacity: 0, y: 100, filter: "blur(10px)" },
       {
         opacity: 1,
         y: 0,
-        duration: 1,
-        ease: "power2.out",
+        filter: "blur(0px)",
+        duration: 1.5,
+        ease: "power4.out",
         onComplete: () => {
-          // Pulse animation for button after reveal
           gsap.to(btnRef.current, {
             scale: 1.05,
             duration: 0.8,
@@ -54,7 +54,7 @@ const JoinRevolution: React.FC = () => {
           });
         }
       },
-      "-=0.5"
+      "-=0.8"
     );
 
   }, { scope: containerRef });

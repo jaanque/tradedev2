@@ -15,29 +15,32 @@ const QueEs: React.FC = () => {
 
   // Split text into words safely
   const words = textContent.split(" ");
+  // Split title into characters
+  const titleChars = "El Concepto".split("");
 
   useGSAP(() => {
     const wordElements = textRef.current?.querySelectorAll('.word');
-    if (!wordElements || !titleRef.current) return;
+    const charElements = titleRef.current?.querySelectorAll('.char');
 
-    // 1. Title Entrance (Massive & Elegant)
-    gsap.fromTo(titleRef.current,
+    if (!wordElements || !charElements) return;
+
+    // 1. Title Entrance (Cinematic Character Stagger)
+    gsap.fromTo(charElements,
       {
         y: 100,
         opacity: 0,
-        filter: "blur(20px)",
-        scale: 0.9
+        rotateX: -90,
       },
       {
         y: 0,
         opacity: 1,
-        filter: "blur(0px)",
-        scale: 1,
-        duration: 1.5,
-        ease: "power3.out",
+        rotateX: 0,
+        duration: 1.2,
+        stagger: 0.05,
+        ease: "expo.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 75%", // Start earlier
+          start: "top 80%",
           toggleActions: "play none none reverse"
         }
       }
@@ -46,12 +49,12 @@ const QueEs: React.FC = () => {
     // 2. Text Reveal (Reading Experience)
     gsap.to(wordElements, {
       color: "#1a1a1a",
-      stagger: 0.05, // Faster stagger for smoother read
+      stagger: 0.02, // Very fast stagger for fluid reading
       scrollTrigger: {
-        trigger: textRef.current, // Trigger based on text paragraph position
-        start: "top 70%",
-        end: "bottom 40%",
-        scrub: 1,
+        trigger: textRef.current,
+        start: "top 60%",
+        end: "bottom 30%",
+        scrub: 0.5,
       }
     });
 
@@ -60,7 +63,11 @@ const QueEs: React.FC = () => {
   return (
     <section className="que-es" ref={containerRef}>
       <div className="que-es-container">
-        <h2 className="que-es-title" ref={titleRef}>El Concepto</h2>
+        <h2 className="que-es-title" ref={titleRef}>
+          {titleChars.map((char, i) => (
+             <span key={i} className="char" style={{display: 'inline-block', whiteSpace: 'pre'}}>{char}</span>
+          ))}
+        </h2>
         <p className="que-es-text" ref={textRef}>
           {words.map((word, index) => (
             <React.Fragment key={index}>
