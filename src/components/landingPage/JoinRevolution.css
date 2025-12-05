@@ -1,5 +1,5 @@
 .join-revolution {
-  height: 100vh; /* Changed to 100vh for full screen pin */
+  height: 100vh;
   width: 100%;
   position: relative;
   display: flex;
@@ -7,14 +7,14 @@
   align-items: center;
   overflow: hidden;
   text-align: center;
-  background-color: var(--bg-color); /* Starts light */
+  background-color: var(--bg-color);
 }
 
 .bg-circle {
   position: absolute;
-  width: 50px; /* Smaller start */
+  width: 50px;
   height: 50px;
-  background-color: #000; /* Distinct black circle */
+  background-color: #000;
   border-radius: 50%;
   z-index: 1;
 }
@@ -22,40 +22,46 @@
 .join-content {
   position: relative;
   z-index: 2;
-  opacity: 0; /* Hidden initially, handled by GSAP */
+  opacity: 0;
 }
 
 .join-content h2 {
-  font-size: 6rem;
-  line-height: 0.9;
-  font-weight: 700;
-  margin-bottom: 3rem;
+  font-size: 5.5rem;
+  line-height: 1;
+  font-weight: 800;
+  margin-bottom: 3.5rem;
   letter-spacing: -0.04em;
-  color: #fff; /* White text on black bg */
+  color: #fff;
 }
 
 .join-content h2 span {
-  color: #ccc; /* Subtle accent */
+  color: rgba(255,255,255,0.7);
 }
 
 .join-btn {
-  padding: 1.5rem 3rem;
-  font-size: 1.2rem;
+  padding: 1.5rem 3.5rem;
+  font-size: 1.25rem;
   background: #fff;
   color: #000;
   border: none;
-  border-radius: 50px;
+  border-radius: 100px;
   cursor: pointer;
-  font-weight: 600;
-  transition: transform 0.2s ease;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10px 40px rgba(255,255,255,0.2);
 }
 
 .join-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 20px 60px rgba(255,255,255,0.4);
 }
 
 @media (max-width: 768px) {
   .join-content h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+  }
+  .join-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
   }
 }

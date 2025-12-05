@@ -4,14 +4,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 12rem 2rem; /* Increased vertical breathing room */
+  padding: 10rem 2rem;
   background-color: #fafafa;
   position: relative;
   overflow: hidden;
 }
 
 .que-es-container {
-  max-width: 1100px;
+  max-width: 1000px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -20,35 +20,30 @@
   align-items: center;
 }
 
-/* Massive Title */
 .que-es-title {
-  font-size: 12vw; /* Massive, responsive */
+  font-size: 4.5rem; /* Reduced from 12vw */
   font-weight: 800;
-  text-transform: none; /* Keep it natural case or specific styling */
-  letter-spacing: -0.06em;
+  text-transform: none;
+  letter-spacing: -0.04em;
   color: #1a1a1a;
-  margin-bottom: 6rem;
-  line-height: 0.9;
+  margin-bottom: 4rem;
+  line-height: 1.1;
   position: relative;
   display: block;
   width: 100%;
-  opacity: 0; /* Handled by GSAP */
-  transform: translateY(50px);
-}
-
-.que-es-title::after {
-  display: none; /* Removed the small underline line for cleaner look */
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .que-es-text {
-  font-size: 2.5rem; /* Slightly smaller for elegance vs title contrast */
+  font-size: 2.25rem;
   line-height: 1.5;
   font-weight: 500;
   color: #e6e6e6;
   letter-spacing: -0.02em;
   font-family: 'Inter', sans-serif;
   margin: 0;
-  max-width: 900px;
+  max-width: 850px;
 }
 
 .word {
@@ -59,14 +54,14 @@
 
 @media (max-width: 768px) {
   .que-es {
-    padding: 8rem 1.5rem;
+    padding: 6rem 1.5rem;
   }
   .que-es-title {
-    font-size: 15vw;
-    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
   }
   .que-es-text {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     line-height: 1.4;
   }
 }
