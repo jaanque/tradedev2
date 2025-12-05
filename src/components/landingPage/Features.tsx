@@ -19,6 +19,10 @@ const featuresData = [
     title: "Earn Tokens",
     description: "Complete platform challenges and engage with content to earn investment capital.",
   },
+  {
+    title: "Real-time Analytics",
+    description: "Track your portfolio performance with advanced charting tools.",
+  }
 ];
 
 const Features: React.FC = () => {
@@ -27,27 +31,29 @@ const Features: React.FC = () => {
   useGSAP(() => {
     const cards = gsap.utils.toArray<HTMLElement>('.feature-card');
 
-    gsap.fromTo(cards,
-      {
-        y: 100,
-        opacity: 0
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out",
+    // Parallax effect: even cards move differently than odd cards
+    cards.forEach((card, i) => {
+      const speed = (i % 2 === 0) ? 50 : -50;
+
+      gsap.to(card, {
+        y: speed,
+        ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
         }
-      }
-    );
+      });
+    });
+
   }, { scope: containerRef });
 
   return (
     <section className="features" ref={containerRef}>
+      <div className="features-header">
+        <h2>Why Invest?</h2>
+      </div>
       <div className="features-grid">
         {featuresData.map((feature, index) => (
           <div key={index} className="feature-card">

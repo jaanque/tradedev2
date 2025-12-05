@@ -1,0 +1,60 @@
+.join-revolution {
+  height: 80vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.bg-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: var(--text-color);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.join-content {
+  position: relative;
+  z-index: 1;
+  color: var(--bg-color); /* Inverted because background will be black */
+  mix-blend-mode: difference; /* Ensures visibility during transition if needed, though simple color swap is often cleaner */
+}
+
+.join-content h2 {
+  font-size: 6rem;
+  line-height: 0.9;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  letter-spacing: -0.04em;
+  color: #fff; /* Explicitly white against the black circle */
+}
+
+.join-content h2 span {
+  color: #888; /* Subtle accent */
+}
+
+.join-btn {
+  padding: 1.5rem 3rem;
+  font-size: 1.2rem;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.join-btn:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .join-content h2 {
+    font-size: 3rem;
+  }
+}

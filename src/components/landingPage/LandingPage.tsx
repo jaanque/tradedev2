@@ -3,6 +3,8 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import ScrollSection from './ScrollSection';
 import Features from './Features';
+import HowItWorks from './HowItWorks';
+import JoinRevolution from './JoinRevolution';
 import Footer from './Footer';
 
 const LandingPage: React.FC = () => {
@@ -12,6 +14,8 @@ const LandingPage: React.FC = () => {
       <Hero />
       <ScrollSection />
       <Features />
+      <HowItWorks />
+      <JoinRevolution />
       <Footer />
     </div>
   );
