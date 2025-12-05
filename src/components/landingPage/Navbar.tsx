@@ -34,23 +34,25 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo">SocialStock</div>
-      <div className="ticker-container">
-        <div className="ticker-wrapper" ref={tickerRef}>
-          {[...users, ...users, ...users, ...users].map((user, index) => (
-            <div key={index} className="ticker-item">
-              <span className="user-name">{user.name}</span>
-              <span className={`user-value ${user.value.startsWith('+') ? 'positive' : 'negative'}`}>
-                {user.value}
-              </span>
-              <span className="user-price">{user.price}</span>
-            </div>
-          ))}
+      <div className="navbar-content">
+        <div className="navbar-logo">SocialStock</div>
+        <div className="ticker-container">
+          <div className="ticker-wrapper" ref={tickerRef}>
+            {[...users, ...users, ...users, ...users].map((user, index) => (
+              <div key={index} className="ticker-item">
+                <span className="user-name">{user.name}</span>
+                <span className={`user-value ${user.value.startsWith('+') ? 'positive' : 'negative'}`}>
+                  {user.value}
+                </span>
+                <span className="user-price">{user.price}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="navbar-auth">
-        <button className="btn-login">Log In</button>
-        <button className="btn-signup">Join</button>
+        <div className="navbar-auth">
+          <button className="btn-login">Log In</button>
+          <button className="btn-signup">Join</button>
+        </div>
       </div>
     </nav>
   );

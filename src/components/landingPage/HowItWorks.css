@@ -9,14 +9,27 @@
   color: #fff;
 }
 
-.hiw-title-static {
+.hiw-title-container {
   position: absolute;
-  top: 2rem;
-  left: 2rem;
+  top: calc(54px + 2rem);
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* Let scroll pass through if needed, though title is small */
+  z-index: 10;
+}
+
+.hiw-title-inner {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hiw-title-static {
   font-size: 1rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.5);
-  z-index: 10;
 }
 
 .hiw-container {

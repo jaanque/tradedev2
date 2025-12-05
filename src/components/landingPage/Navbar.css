@@ -1,23 +1,31 @@
 .navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fafafa;
+  z-index: 1000;
+  height: 54px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-content {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  border-bottom: 1px solid var(--border-color);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #fafafa;
-  /* backdrop-filter: blur(10px); removed to keep solid color consistent */
-  z-index: 1000;
-  height: 54px;
 }
 
 .navbar-logo {
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: -0.02em;
+  flex-shrink: 0;
 }
 
 .ticker-container {
@@ -57,6 +65,7 @@
 .navbar-auth {
   display: flex;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
 .btn-login, .btn-signup {

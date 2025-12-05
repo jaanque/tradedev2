@@ -58,7 +58,11 @@ const HowItWorks: React.FC = () => {
 
   return (
     <section className="how-it-works" ref={sectionRef}>
-      <div className="hiw-title-static">How It Works</div>
+      <div className="hiw-title-container">
+        <div className="hiw-title-inner">
+          <div className="hiw-title-static">How It Works</div>
+        </div>
+      </div>
       <div className="hiw-container" ref={containerRef}>
         {steps.map((step, index) => (
           <div key={index} className="hiw-card">
