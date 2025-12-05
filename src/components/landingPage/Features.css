@@ -2,7 +2,7 @@
   padding: 8rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  perspective: 1000px; /* Needed for 3D tilt */
+  perspective: 1000px;
 }
 
 .features-header {
@@ -21,14 +21,15 @@
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, minmax(250px, auto));
+  gap: 1.5rem;
   padding: 2rem 0;
 }
 
 .feature-card {
   position: relative;
-  padding: 3rem;
+  padding: 2rem;
   background: #ffffff;
   border-radius: 24px;
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -36,21 +37,52 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 320px;
   overflow: hidden;
   cursor: pointer;
-  /* preserve-3d handled by GSAP transformPerspective */
+  transition: box-shadow 0.3s ease;
 }
 
-/* Card Number Styling */
+/* Grid Spanning Helper Classes */
+.feature-card.span-col-2 {
+  grid-column: span 2;
+}
+
+.feature-card.span-row-2 {
+  grid-row: span 2;
+}
+
+/* Specific Card Tweaks to match layout if needed */
+/*
+   The grid auto-placement algorithm should handle most,
+   but since we have specific slots:
+   1. Span Row 2 (Col 1)
+   2. Span Col 2 (Row 1, Col 2-3)
+   3. Regular (Row 1, Col 4)
+   4. Regular (Row 2, Col 2)
+   5. Regular (Row 2, Col 3)
+   6. Span Row 2 (Row 2-3, Col 4)
+   7. Regular (Row 3, Col 1)
+   8. Span Col 2 (Row 3, Col 2-3)
+
+   This matches the items in Features.tsx:
+   1. User Actions (Row 2) -> spans rows 1 & 2
+   2. Market Dynamics (Col 2) -> spans cols 2 & 3
+   3. Instant Trades -> fills Col 4, Row 1 (Auto)
+   4. Community Driven -> fills Col 2, Row 2 (Auto)
+   5. Earn Tokens -> fills Col 3, Row 2 (Auto)
+   6. Creator Economy (Row 2) -> spans rows 2 & 3 (starts at Col 4)
+   7. Security -> fills Col 1, Row 3 (Auto)
+   8. Global Scale (Col 2) -> spans cols 2 & 3 (Row 3)
+*/
+
 .card-number {
   font-family: var(--font-family);
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: rgba(0, 0, 0, 0.05);
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1.5rem;
+  right: 1.5rem;
   line-height: 1;
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -60,25 +92,25 @@
   transform: scale(1.1);
 }
 
-.feature-card h3 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+.card-content {
   position: relative;
   z-index: 2;
+  margin-top: auto;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .feature-card p {
   color: var(--secondary-text);
-  line-height: 1.6;
-  font-size: 1.1rem;
-  position: relative;
-  z-index: 2;
-  margin-top: auto; /* Pushes text to bottom if flex spacing allows, otherwise just flows */
+  line-height: 1.5;
+  font-size: 1rem;
 }
 
-/* Subtle Gradient overlay */
 .card-gradient {
   position: absolute;
   top: 0;
@@ -96,10 +128,31 @@
   opacity: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+
+  /* Reset spans on tablet */
+  .feature-card.span-col-2 {
+    grid-column: span 2;
+  }
+
+  .feature-card.span-row-2 {
+    grid-row: span 1; /* Rows don't span well on 2-col layout usually */
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
   .features-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+
+  .feature-card.span-col-2 {
+    grid-column: span 1;
   }
 
   .features-header h2 {
@@ -108,6 +161,6 @@
 
   .feature-card {
     min-height: auto;
-    padding: 2.5rem;
+    padding: 2rem;
   }
 }
