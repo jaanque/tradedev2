@@ -1,31 +1,9 @@
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import React from 'react';
 import './Footer.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const Footer: React.FC = () => {
-  const footerRef = useRef<HTMLElement>(null);
-
-  useGSAP(() => {
-    // Stagger reveal of footer columns
-    gsap.from('.footer-col, .footer-brand', {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: "top 90%",
-      }
-    });
-  }, { scope: footerRef });
-
   return (
-    <footer className="footer" ref={footerRef}>
+    <footer className="footer">
       <div className="footer-top">
         <div className="footer-brand">
           <h4>SocialStock</h4>

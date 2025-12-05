@@ -1,59 +1,31 @@
 .que-es {
-  min-height: 100vh;
-  min-height: 100dvh;
+  width: 100%;
+  padding: 6rem 2rem;
+  background-color: #fff;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  /* Fluid padding */
-  padding: clamp(6rem, 15vh, 10rem) clamp(1.5rem, 5vw, 4rem);
-  background-color: #fafafa;
-  position: relative;
-  overflow: hidden;
 }
 
 .que-es-container {
-  max-width: 1000px;
+  max-width: 900px;
   width: 100%;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: left;
 }
 
 .que-es-title {
-  /* Fluid font size */
-  font-size: clamp(2.5rem, 10vw, 5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
-  text-transform: none;
-  letter-spacing: -0.04em;
   color: #1a1a1a;
-  margin-bottom: clamp(2rem, 5vh, 4rem);
-  line-height: 1.1;
-  position: relative;
-  display: block;
-  width: 100%;
-  opacity: 0;
-  transform: translateY(30px);
+  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #1a1a1a; /* Adds visual solidity */
+  display: inline-block;
 }
 
 .que-es-text {
-  /* Fluid font size */
-  font-size: clamp(1.1rem, 4vw, 2.25rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   line-height: 1.5;
-  font-weight: 500;
-  color: #e6e6e6;
-  letter-spacing: -0.02em;
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  max-width: 850px;
-  width: 100%;
-}
-
-.word {
-  display: inline-block;
-  margin-right: 0.25em;
-  will-change: color, transform, opacity;
+  color: #333;
+  font-weight: 400;
 }

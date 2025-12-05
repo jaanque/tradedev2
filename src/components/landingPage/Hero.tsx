@@ -4,13 +4,6 @@ import './Hero.css';
 const Hero: React.FC = () => {
   return (
     <section className="hero">
-      <div className="hero-background">
-        <div className="hero-grid"></div>
-        <div className="hero-bg-blob blob-1"></div>
-        <div className="hero-bg-blob blob-2"></div>
-        <div className="hero-bg-blob blob-3"></div>
-      </div>
-
       <div className="hero-content">
         <h1 className="hero-title">
           Invierte en Personas,<br />
