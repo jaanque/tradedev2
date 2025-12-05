@@ -25,10 +25,12 @@ const JoinRevolution: React.FC = () => {
     });
 
     // 1. Expand Circle to fill screen
+    // We use a massive scale to ensure it covers even 4K screens or ultrawide.
+    // Starting at 50px, scale 100 makes it 5000px width/height.
     tl.fromTo(circleRef.current,
       { scale: 0 },
       {
-        scale: 40, // Enough to cover screen
+        scale: 150, // Increased from 40 to 150 to guarantee full coverage
         duration: 2,
         ease: "power2.inOut",
       }
