@@ -38,6 +38,7 @@ const Hero: React.FC = () => {
   return (
     <section className="hero" ref={containerRef}>
       <div className="hero-background">
+        <div className="hero-grid"></div> {/* New Grid Background */}
         <div className="hero-bg-blob blob-1"></div>
         <div className="hero-bg-blob blob-2"></div>
         <div className="hero-bg-blob blob-3"></div>

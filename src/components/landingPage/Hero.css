@@ -10,6 +10,7 @@
   padding-top: 54px; /* Offset for navbar */
   position: relative;
   overflow: hidden;
+  perspective: 1000px; /* Enable 3D perspective */
 }
 
 /* Background Effects */
@@ -21,38 +22,60 @@
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  opacity: 0.6;
+  background-color: #fff; /* Ensure white base */
+}
+
+/* Moving Grid */
+.hero-grid {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: rotateX(60deg); /* Tilt effect */
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes gridMove {
+  0% { transform: rotateX(60deg) translateY(0); }
+  100% { transform: rotateX(60deg) translateY(50px); }
 }
 
 .hero-bg-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.5;
+  opacity: 0.4; /* Slightly reduced opacity to blend with grid */
+  mix-blend-mode: multiply; /* Better blending on light bg */
 }
 
 .blob-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(100,100,255,0.1) 0%, rgba(200,200,255,0.05) 100%);
-  top: -100px;
-  left: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(100,100,255,0.15) 0%, rgba(200,200,255,0.05) 100%);
+  top: -150px;
+  left: -150px;
 }
 
 .blob-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255,100,100,0.08) 0%, rgba(255,200,200,0.04) 100%);
-  bottom: -50px;
-  right: -50px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,100,100,0.12) 0%, rgba(255,200,200,0.05) 100%);
+  bottom: -100px;
+  right: -100px;
 }
 
 .blob-3 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(100,255,100,0.08) 0%, rgba(200,255,200,0.04) 100%);
-  top: 50%;
-  left: 50%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(100,255,100,0.12) 0%, rgba(200,255,200,0.05) 100%);
+  top: 40%;
+  left: 60%;
   transform: translate(-50%, -50%);
 }
 
@@ -121,11 +144,12 @@
   background-color: transparent;
   color: var(--text-color);
   border: 1px solid rgba(0,0,0,0.1);
+  backdrop-filter: blur(5px); /* Frost effect */
 }
 
 .cta-secondary:hover {
   border-color: var(--text-color);
-  background-color: rgba(0,0,0,0.02);
+  background-color: rgba(255,255,255,0.5);
   transform: translateY(-2px);
 }
 
@@ -147,5 +171,8 @@
   .cta-primary, .cta-secondary {
       width: 100%;
       max-width: 300px;
+  }
+  .hero-grid {
+      background-size: 30px 30px; /* Smaller grid for mobile */
   }
 }
