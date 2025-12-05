@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
     if (!ticker) return;
 
     const totalWidth = ticker.scrollWidth;
-    const duration = totalWidth / 50; // Adjust speed here
+    const duration = totalWidth / 50;
 
     gsap.to(ticker, {
       x: -totalWidth / 2,
@@ -50,8 +50,8 @@ const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="navbar-auth">
-          <button className="btn-login">Log In</button>
-          <button className="btn-signup">Join</button>
+          <button className="btn-login">Iniciar Sesión</button>
+          <button className="btn-signup">Unirse</button>
         </div>
       </div>
     </nav>

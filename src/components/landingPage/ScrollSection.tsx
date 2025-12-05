@@ -29,7 +29,7 @@ const ScrollSection: React.FC = () => {
   return (
     <section className="scroll-section" ref={containerRef}>
       <div className="scroll-text" ref={textRef}>
-        INFLUENCE • VALUE • TRADE • CONNECT • GROW • INFLUENCE • VALUE • TRADE • CONNECT • GROW
+        INFLUENCIA • VALOR • OPERA • CONECTA • CRECE • INFLUENCIA • VALOR • OPERA • CONECTA • CRECE
       </div>
     </section>
   );

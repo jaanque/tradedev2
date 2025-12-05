@@ -25,18 +25,16 @@ const JoinRevolution: React.FC = () => {
     });
 
     // 1. Expand Circle to fill screen
-    // We use a massive scale to ensure it covers even 4K screens or ultrawide.
-    // Starting at 50px, scale 100 makes it 5000px width/height.
     tl.fromTo(circleRef.current,
       { scale: 0 },
       {
-        scale: 150, // Increased from 40 to 150 to guarantee full coverage
+        scale: 150,
         duration: 2,
         ease: "power2.inOut",
       }
     );
 
-    // 2. Reveal Text (overlapping slightly with end of circle expansion)
+    // 2. Reveal Text
     tl.fromTo(contentRef.current,
       { opacity: 0, y: 50 },
       {
@@ -45,7 +43,7 @@ const JoinRevolution: React.FC = () => {
         duration: 1,
         ease: "power2.out"
       },
-      "-=0.5" // Start 0.5s before circle finishes
+      "-=0.5"
     );
 
   }, { scope: containerRef });
@@ -54,8 +52,8 @@ const JoinRevolution: React.FC = () => {
     <section className="join-revolution" ref={containerRef}>
       <div className="bg-circle" ref={circleRef}></div>
       <div className="join-content" ref={contentRef}>
-        <h2 ref={textRef}>The Future is <br/> <span>User Owned.</span></h2>
-        <button className="join-btn">Join the Waitlist</button>
+        <h2 ref={textRef}>El Futuro es <br/> <span>Propiedad del Usuario.</span></h2>
+        <button className="join-btn">Unirse a la Lista de Espera</button>
       </div>
     </section>
   );

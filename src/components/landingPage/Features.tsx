@@ -9,50 +9,50 @@ gsap.registerPlugin(ScrollTrigger);
 const featuresData = [
   {
     id: "01",
-    title: "User Actions",
-    description: "Every like, comment, and post has a value. Buy actions from your favorite creators.",
+    title: "Acciones de Usuario",
+    description: "Cada like, comentario y publicación tiene valor. Compra acciones de tus creadores favoritos.",
     className: "span-row-2"
   },
   {
     id: "02",
-    title: "Market Dynamics",
-    description: "Prices fluctuate based on demand and engagement. Trade wisely.",
+    title: "Dinámicas de Mercado",
+    description: "Los precios fluctúan según la demanda y el compromiso. Opera con sabiduría.",
     className: "span-col-2"
   },
   {
     id: "03",
-    title: "Instant Trades",
-    description: "Execute orders instantly with our high-speed matching engine.",
+    title: "Operaciones Instantáneas",
+    description: "Ejecuta órdenes al instante con nuestro motor de emparejamiento de alta velocidad.",
     className: ""
   },
   {
     id: "04",
-    title: "Community Driven",
-    description: "Join a vibrant community of investors and creators.",
+    title: "Impulsado por la Comunidad",
+    description: "Únete a una comunidad vibrante de inversores y creadores.",
     className: ""
   },
   {
     id: "05",
-    title: "Earn Tokens",
-    description: "Complete platform challenges to earn investment capital.",
+    title: "Gana Tokens",
+    description: "Completa desafíos de la plataforma para ganar capital de inversión.",
     className: ""
   },
   {
     id: "06",
-    title: "Creator Economy",
-    description: "Directly support creators by investing in their success.",
+    title: "Economía de Creadores",
+    description: "Apoya directamente a los creadores invirtiendo en su éxito.",
     className: "span-row-2"
   },
   {
     id: "07",
-    title: "Security",
-    description: "Your assets are protected by top-tier security protocols.",
+    title: "Seguridad",
+    description: "Tus activos están protegidos por protocolos de seguridad de primer nivel.",
     className: ""
   },
   {
     id: "08",
-    title: "Global Scale",
-    description: "Connect with a global market of social assets.",
+    title: "Escala Global",
+    description: "Conéctate con un mercado global de activos sociales.",
     className: "span-col-2"
   }
 ];
@@ -115,7 +115,7 @@ const Features: React.FC = () => {
   return (
     <section className="features" ref={containerRef}>
       <div className="features-header">
-        <h2>Why Invest?</h2>
+        <h2>¿Por Qué Invertir?</h2>
       </div>
       <div className="features-grid">
         {featuresData.map((feature, index) => (

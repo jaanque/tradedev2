@@ -1,0 +1,37 @@
+.que-es {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background-color: #fafafa;
+  position: relative;
+}
+
+.que-es-container {
+  max-width: 1000px;
+  text-align: center; /* Left align can be better for reading, but centered often looks more "manifesto" like */
+}
+
+.que-es-text {
+  font-size: 3rem; /* Large and readable */
+  line-height: 1.4;
+  font-weight: 600;
+  color: #e0e0e0; /* Initial light gray */
+  letter-spacing: -0.02em;
+  font-family: 'Inter', sans-serif;
+  flex-wrap: wrap;
+}
+
+/* Words are wrapped in spans by React, styling handled there or generally here */
+.word {
+  display: inline-block;
+  margin-right: 0.3em; /* Space between words */
+  transition: color 0.1s linear; /* Smoothness handled by GSAP usually */
+}
+
+@media (max-width: 768px) {
+  .que-es-text {
+    font-size: 1.8rem;
+  }
+}
