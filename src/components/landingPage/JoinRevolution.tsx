@@ -16,12 +16,15 @@ const JoinRevolution: React.FC = () => {
     gsap.fromTo(circleRef.current,
       { scale: 0 },
       {
-        scale: 50, // Increased scale to ensure full coverage on large screens
+        scale: 50,
         ease: "power2.inOut",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top bottom",
-          end: "center center",
+          // Changed from "center center" to "bottom top"
+          // This significantly increases the scroll distance required to complete the animation
+          // making it feel slower/smoother.
+          end: "bottom top",
           scrub: 1,
         }
       }

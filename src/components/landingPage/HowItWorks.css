@@ -3,81 +3,87 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  background-color: #1a1a1a; /* Dark contrast section */
+  background-color: #1a1a1a;
   color: #fff;
 }
 
-.hiw-title-container {
+/* Intro Title Container */
+.hiw-intro {
   position: absolute;
-  top: calc(54px + 2rem);
+  top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  pointer-events: none; /* Let scroll pass through if needed, though title is small */
+  align-items: center;
   z-index: 10;
+  pointer-events: none; /* Allow clicks to pass through if necessary */
 }
 
-.hiw-title-inner {
-  width: 100%;
-  max-width: 100%; /* Full width */
-  padding: 0 4rem; /* Match other sections padding */
+.hiw-intro-title {
+  font-size: 10vw; /* Huge responsive title */
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
 }
 
-.hiw-title-static {
-  font-size: 1rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-}
-
+/* Horizontal Scroll Container */
 .hiw-container {
   display: flex;
-  padding-left: 10vw; /* Start with some offset */
-  gap: 10vw;
+  height: 100%;
+  align-items: center;
+  padding-left: 100vw; /* Start with content off-screen to the right */
   width: fit-content;
+  will-change: transform;
 }
 
 .hiw-card {
   width: 60vw;
   flex-shrink: 0;
   border-left: 1px solid rgba(255, 255, 255, 0.2);
-  padding-left: 2rem;
+  padding-left: 4rem;
+  margin-right: 10vw; /* Gap between cards */
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .hiw-num {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-family: monospace;
 }
 
 .hiw-card-title {
-  font-size: 6vw; /* Responsive font size */
+  font-size: 5vw;
   font-weight: 600;
   margin-bottom: 2rem;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .hiw-card-text {
   font-size: 1.5rem;
-  max-width: 600px; /* Still limit text width for readability */
+  max-width: 600px;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 300;
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-  .hiw-title-inner {
-    padding: 0 1.5rem;
+  .hiw-intro-title {
+    font-size: 15vw;
+  }
+  .hiw-card {
+    width: 85vw;
+    padding-left: 2rem;
   }
   .hiw-card-title {
     font-size: 3rem;
   }
-  .hiw-card {
-    width: 80vw;
+  .hiw-card-text {
+    font-size: 1.1rem;
   }
 }
