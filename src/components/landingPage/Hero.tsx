@@ -6,6 +6,7 @@ import './Hero.css';
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
 
   // Mouse Interaction
   useEffect(() => {
@@ -54,6 +55,40 @@ const Hero: React.FC = () => {
       }
     });
 
+    // Magnetic Button Effect
+    const btn = btnRef.current;
+    if (btn) {
+      const handleBtnMove = (e: MouseEvent) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(btn, {
+          x: x * 0.3, // Strength of magnet
+          y: y * 0.3,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      };
+
+      const handleBtnLeave = () => {
+        gsap.to(btn, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: "elastic.out(1, 0.3)"
+        });
+      };
+
+      btn.addEventListener('mousemove', handleBtnMove);
+      btn.addEventListener('mouseleave', handleBtnLeave);
+
+      return () => {
+        btn.removeEventListener('mousemove', handleBtnMove);
+        btn.removeEventListener('mouseleave', handleBtnLeave);
+      };
+    }
+
   }, { scope: containerRef });
 
   return (
@@ -75,7 +110,7 @@ const Hero: React.FC = () => {
           Compra, vende e intercambia acciones de usuarios.
         </p>
         <div className="hero-cta">
-          <button className="cta-primary">Empezar a Operar</button>
+          <button className="cta-primary" ref={btnRef}>Empezar a Operar</button>
           <button className="cta-secondary">Descubre Más</button>
         </div>
       </div>

@@ -3,12 +3,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.85); /* Slightly lighter */
-  backdrop-filter: blur(12px); /* Stronger blur */
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.7); /* Even lighter for more glass feel */
+  backdrop-filter: blur(20px); /* Heavy blur for premium look */
+  -webkit-backdrop-filter: blur(20px);
   z-index: 1000;
-  height: 64px; /* Slightly taller for elegance */
-  border-bottom: 1px solid rgba(0,0,0,0.03); /* Very subtle border */
+  height: 64px;
+  border-bottom: 1px solid rgba(255,255,255,0.2); /* Glass edge */
   display: flex;
   justify-content: center;
   transition: all 0.3s ease;
@@ -16,7 +16,7 @@
 
 .navbar-content {
   width: 100%;
-  max-width: 1400px; /* Wider content max */
+  max-width: 1400px;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -38,7 +38,7 @@
   overflow: hidden;
   margin: 0 4rem;
   position: relative;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); /* Wider mask */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .ticker-wrapper {
@@ -58,7 +58,7 @@
 
 .user-value.positive {
   color: #00ba7c;
-  background: rgba(0, 186, 124, 0.08); /* Subtle highlight */
+  background: rgba(0, 186, 124, 0.08);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
 }
@@ -120,7 +120,7 @@
   }
   .ticker-container {
     margin: 0 1rem;
-    display: none; /* Hide ticker on mobile to prevent clutter */
+    display: none;
   }
   .btn-login {
       display: none;

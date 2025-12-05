@@ -2,8 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
 import ScrollSection from './ScrollSection';
-import Features from './Features';
-import QueEs from './QueEs'; // New Section
+import QueEs from './QueEs';
 import JoinRevolution from './JoinRevolution';
 import Footer from './Footer';
 
@@ -13,8 +12,7 @@ const LandingPage: React.FC = () => {
       <Navbar />
       <Hero />
       <ScrollSection />
-      <QueEs /> {/* Placed prominently to explain the concept */}
-      <Features />
+      <QueEs />
       <JoinRevolution />
       <Footer />
     </div>
