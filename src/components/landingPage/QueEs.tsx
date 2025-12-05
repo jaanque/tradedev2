@@ -20,28 +20,36 @@ const QueEs: React.FC = () => {
     const wordElements = textRef.current?.querySelectorAll('.word');
     if (!wordElements || !titleRef.current) return;
 
-    // Title Animation
+    // 1. Title Entrance (Massive & Elegant)
     gsap.fromTo(titleRef.current,
-      { opacity: 0, y: 20 },
       {
-        opacity: 1,
+        y: 100,
+        opacity: 0,
+        filter: "blur(20px)",
+        scale: 0.9
+      },
+      {
         y: 0,
-        duration: 1,
-        ease: "power2.out",
+        opacity: 1,
+        filter: "blur(0px)",
+        scale: 1,
+        duration: 1.5,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 70%",
+          start: "top 75%", // Start earlier
+          toggleActions: "play none none reverse"
         }
       }
     );
 
-    // Text Reveal Animation
+    // 2. Text Reveal (Reading Experience)
     gsap.to(wordElements, {
       color: "#1a1a1a",
-      stagger: 0.1,
+      stagger: 0.05, // Faster stagger for smoother read
       scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
+        trigger: textRef.current, // Trigger based on text paragraph position
+        start: "top 70%",
         end: "bottom 40%",
         scrub: 1,
       }
