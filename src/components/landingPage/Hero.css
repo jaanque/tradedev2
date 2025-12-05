@@ -1,13 +1,16 @@
 .hero {
-  height: 100vh;
+  /* Use min-height to allow content to grow on small landscape screens */
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0 4rem;
-  padding-top: 54px; /* Offset for navbar */
+  /* Fluid padding */
+  padding: clamp(6rem, 15vh, 10rem) clamp(1rem, 5vw, 4rem) clamp(4rem, 10vh, 6rem);
   position: relative;
   overflow: hidden;
   perspective: 1000px;
@@ -35,7 +38,7 @@
   background-image:
     linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-size: clamp(30px, 4vw, 50px) clamp(30px, 4vw, 50px);
   transform: rotateX(60deg);
   animation: gridMove 20s linear infinite;
   pointer-events: none;
@@ -49,30 +52,27 @@
 .hero-bg-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(clamp(40px, 8vw, 80px));
   opacity: 0.4;
   mix-blend-mode: multiply;
+  /* Fluid sizing */
+  width: clamp(300px, 40vw, 600px);
+  height: clamp(300px, 40vw, 600px);
 }
 
 .blob-1 {
-  width: 600px;
-  height: 600px;
   background: radial-gradient(circle, rgba(100,100,255,0.15) 0%, rgba(200,200,255,0.05) 100%);
-  top: -150px;
-  left: -150px;
+  top: -10%;
+  left: -10%;
 }
 
 .blob-2 {
-  width: 500px;
-  height: 500px;
   background: radial-gradient(circle, rgba(255,100,100,0.12) 0%, rgba(255,200,200,0.05) 100%);
-  bottom: -100px;
-  right: -100px;
+  bottom: -10%;
+  right: -10%;
 }
 
 .blob-3 {
-  width: 400px;
-  height: 400px;
   background: radial-gradient(circle, rgba(100,255,100,0.12) 0%, rgba(200,255,200,0.05) 100%);
   top: 40%;
   left: 60%;
@@ -82,7 +82,7 @@
 
 .hero-content {
   width: 100%;
-  max-width: 100%;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,42 +91,48 @@
 }
 
 .hero-title {
-  font-size: 5rem;
-  line-height: 1;
+  /* Fluid Typography: min, preferred, max */
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.04em;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
   background: linear-gradient(180deg, #1a1a1a 0%, #4a4a4a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   max-width: 1100px;
+  width: 100%;
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: var(--secondary-text);
   max-width: 700px;
-  margin-bottom: 3.5rem;
+  margin-bottom: clamp(2rem, 5vh, 4rem);
   line-height: 1.6;
   font-weight: 300;
+  padding: 0 1rem;
 }
 
 .hero-cta {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+  flex-wrap: wrap; /* Allow wrapping on very small screens */
+  width: 100%;
 }
 
 /* Enhanced Buttons */
 .cta-primary, .cta-secondary {
-  padding: 1.2rem 2.5rem;
-  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   font-weight: 600;
   cursor: pointer;
   border-radius: 50px;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .cta-primary {
@@ -175,7 +181,7 @@
 /* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: clamp(1rem, 5vh, 2rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -217,66 +223,16 @@
   100% { top: 20px; opacity: 0; }
 }
 
-
-/* Responsive Design */
-
-@media (max-width: 1200px) {
-  .hero-title {
-    font-size: 4.5rem;
-  }
-}
-
-@media (max-width: 1024px) {
-  .hero {
-    padding: 0 3rem;
-  }
-  .hero-title {
-    font-size: 4rem;
-  }
-  .hero-bg-blob {
-    width: 300px;
-    height: 300px;
-  }
-}
-
+/* Mobile-Specific Adjustments for Layout */
 @media (max-width: 768px) {
-  .hero {
-    padding: 0 1.5rem;
-    padding-top: 60px;
-  }
-  .hero-title {
-    font-size: 3rem;
-  }
-  .hero-subtitle {
-    font-size: 1.15rem;
-    margin-bottom: 2.5rem;
-  }
   .hero-cta {
       flex-direction: column;
-      width: 100%;
       align-items: center;
       gap: 1rem;
   }
   .cta-primary, .cta-secondary {
       width: 100%;
-      max-width: 300px;
-  }
-  .hero-grid {
-      background-size: 30px 30px;
-  }
-  .blob-1 { top: -100px; left: -100px; }
-  .blob-2 { bottom: -50px; right: -50px; }
-}
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  .hero-subtitle {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-  .scroll-indicator {
-    bottom: 1rem;
+      max-width: 320px;
+      text-align: center;
   }
 }
