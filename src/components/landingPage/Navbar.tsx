@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import './Navbar.css';
@@ -16,6 +16,7 @@ const users = [
 
 const Navbar: React.FC = () => {
   const tickerRef = useRef<HTMLDivElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useGSAP(() => {
     const ticker = tickerRef.current;
@@ -31,6 +32,10 @@ const Navbar: React.FC = () => {
       repeat: -1,
     });
   });
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <nav className="navbar">
@@ -49,9 +54,22 @@ const Navbar: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className="navbar-auth">
+
+        <div className="navbar-desktop-auth">
           <button className="btn-login">Iniciar Sesión</button>
           <button className="btn-signup">Unirse</button>
+        </div>
+
+        <button className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label="Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-menu-content">
+          <button className="btn-login-mobile">Iniciar Sesión</button>
+          <button className="btn-signup-mobile">Unirse</button>
         </div>
       </div>
     </nav>

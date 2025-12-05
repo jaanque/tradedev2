@@ -23,6 +23,7 @@
   position: relative;
   z-index: 2;
   opacity: 0;
+  padding: 0 1rem;
 }
 
 .join-content h2 {
@@ -56,12 +57,34 @@
   box-shadow: 0 20px 60px rgba(255,255,255,0.4);
 }
 
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .join-content h2 {
+    font-size: 4rem;
+  }
+}
+
 @media (max-width: 768px) {
   .join-content h2 {
     font-size: 2.5rem;
+    margin-bottom: 2.5rem;
   }
   .join-btn {
     padding: 1rem 2.5rem;
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .join-content h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .join-btn {
+    padding: 0.9rem 2rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 280px;
   }
 }

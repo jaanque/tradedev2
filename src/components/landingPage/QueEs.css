@@ -21,7 +21,7 @@
 }
 
 .que-es-title {
-  font-size: 4.5rem; /* Reduced from 12vw */
+  font-size: 4.5rem;
   font-weight: 800;
   text-transform: none;
   letter-spacing: -0.04em;
@@ -52,6 +52,21 @@
   will-change: color, transform, opacity;
 }
 
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .que-es {
+    padding: 8rem 2rem;
+  }
+  .que-es-title {
+    font-size: 3.5rem;
+  }
+  .que-es-text {
+    font-size: 1.8rem;
+    max-width: 90%;
+  }
+}
+
 @media (max-width: 768px) {
   .que-es {
     padding: 6rem 1.5rem;
@@ -62,6 +77,20 @@
   }
   .que-es-text {
     font-size: 1.35rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 480px) {
+  .que-es {
+    padding: 4rem 1rem;
+  }
+  .que-es-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .que-es-text {
+    font-size: 1.1rem;
     line-height: 1.4;
   }
 }

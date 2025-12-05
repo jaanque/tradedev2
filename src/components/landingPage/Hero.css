@@ -6,11 +6,11 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0 4rem; /* Increased padding */
+  padding: 0 4rem;
   padding-top: 54px; /* Offset for navbar */
   position: relative;
   overflow: hidden;
-  perspective: 1000px; /* Enable 3D perspective */
+  perspective: 1000px;
 }
 
 /* Background Effects */
@@ -22,7 +22,7 @@
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  background-color: #fff; /* Ensure white base */
+  background-color: #fff;
 }
 
 /* Moving Grid */
@@ -36,7 +36,7 @@
     linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
   background-size: 50px 50px;
-  transform: rotateX(60deg); /* Tilt effect */
+  transform: rotateX(60deg);
   animation: gridMove 20s linear infinite;
   pointer-events: none;
 }
@@ -50,8 +50,8 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.4; /* Slightly reduced opacity to blend with grid */
-  mix-blend-mode: multiply; /* Better blending on light bg */
+  opacity: 0.4;
+  mix-blend-mode: multiply;
 }
 
 .blob-1 {
@@ -82,7 +82,7 @@
 
 .hero-content {
   width: 100%;
-  max-width: 100%; /* Full width */
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,21 +91,21 @@
 }
 
 .hero-title {
-  font-size: 5rem; /* Large font size for big screens */
+  font-size: 5rem;
   line-height: 1;
   font-weight: 700;
-  letter-spacing: -0.04em; /* Tighter tracking for "Perfect" look */
+  letter-spacing: -0.04em;
   margin-bottom: 2rem;
   background: linear-gradient(180deg, #1a1a1a 0%, #4a4a4a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  max-width: 1100px; /* Constrain slightly for readability */
+  max-width: 1100px;
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
   color: var(--secondary-text);
-  max-width: 700px; /* Readability constraint */
+  max-width: 700px;
   margin-bottom: 3.5rem;
   line-height: 1.6;
   font-weight: 300;
@@ -113,7 +113,7 @@
 
 .hero-cta {
   display: flex;
-  gap: 1.5rem; /* More space between buttons */
+  gap: 1.5rem;
   justify-content: center;
 }
 
@@ -218,26 +218,65 @@
 }
 
 
+/* Responsive Design */
+
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 4.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 0 3rem;
+  }
+  .hero-title {
+    font-size: 4rem;
+  }
+  .hero-bg-blob {
+    width: 300px;
+    height: 300px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     padding: 0 1.5rem;
+    padding-top: 60px;
   }
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
   .hero-subtitle {
     font-size: 1.15rem;
+    margin-bottom: 2.5rem;
   }
   .hero-cta {
       flex-direction: column;
       width: 100%;
       align-items: center;
+      gap: 1rem;
   }
   .cta-primary, .cta-secondary {
       width: 100%;
       max-width: 300px;
   }
   .hero-grid {
-      background-size: 30px 30px; /* Smaller grid for mobile */
+      background-size: 30px 30px;
+  }
+  .blob-1 { top: -100px; left: -100px; }
+  .blob-2 { bottom: -50px; right: -50px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  .scroll-indicator {
+    bottom: 1rem;
   }
 }
