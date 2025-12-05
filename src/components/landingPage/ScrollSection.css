@@ -2,15 +2,19 @@
   padding: 6rem 0;
   overflow: hidden;
   background-color: #fafafa;
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid rgba(0,0,0,0.03);
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  position: relative;
 }
 
 .scroll-text {
   font-size: 8rem;
-  font-weight: 700;
+  font-weight: 800;
   white-space: nowrap;
-  color: rgba(0, 0, 0, 0.05);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
   line-height: 1;
   user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.02em;
 }
