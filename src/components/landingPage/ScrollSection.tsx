@@ -14,8 +14,9 @@ const ScrollSection: React.FC = () => {
     const text = textRef.current;
     if (!text) return;
 
+    // Use xPercent for responsive movement
     gsap.to(text, {
-      x: -1000, // Adjust based on text length
+      xPercent: -30, // Move left by 30% of its width
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,
@@ -29,7 +30,25 @@ const ScrollSection: React.FC = () => {
   return (
     <section className="scroll-section" ref={containerRef}>
       <div className="scroll-text" ref={textRef}>
-        INFLUENCIA • VALOR • OPERA • CONECTA • CRECE • INFLUENCIA • VALOR • OPERA • CONECTA • CRECE
+        <span className="scroll-item">INFLUENCIA</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item">VALOR</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item">OPERA</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item">CONECTA</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item">CRECE</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item outlined">INFLUENCIA</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item outlined">VALOR</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item outlined">OPERA</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item outlined">CONECTA</span>
+        <span className="scroll-dot">•</span>
+        <span className="scroll-item outlined">CRECE</span>
       </div>
     </section>
   );

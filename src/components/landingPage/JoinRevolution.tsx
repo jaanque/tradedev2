@@ -11,6 +11,7 @@ const JoinRevolution: React.FC = () => {
   const textRef = useRef<HTMLHeadingElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -41,7 +42,17 @@ const JoinRevolution: React.FC = () => {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: "power2.out"
+        ease: "power2.out",
+        onComplete: () => {
+          // Pulse animation for button after reveal
+          gsap.to(btnRef.current, {
+            scale: 1.05,
+            duration: 0.8,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut"
+          });
+        }
       },
       "-=0.5"
     );
@@ -53,7 +64,7 @@ const JoinRevolution: React.FC = () => {
       <div className="bg-circle" ref={circleRef}></div>
       <div className="join-content" ref={contentRef}>
         <h2 ref={textRef}>El Futuro es <br/> <span>Propiedad del Usuario.</span></h2>
-        <button className="join-btn">Unirse a la Lista de Espera</button>
+        <button className="join-btn" ref={btnRef}>Unirse a la Lista de Espera</button>
       </div>
     </section>
   );
