@@ -30,102 +30,60 @@ const steps = [
 ];
 
 const HowItWorks: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const pathRef = useRef<SVGPathElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const section = sectionRef.current;
-    const container = containerRef.current;
-    const title = titleRef.current;
-    const path = pathRef.current;
-
-    if (!section || !container || !title || !path) return;
-
-    // Calculate scroll width
-    const totalWidth = container.scrollWidth;
-    const viewportWidth = window.innerWidth;
-    const xMovement = -(totalWidth - viewportWidth);
-
-    const tl = gsap.timeline({
+    // 1. Animate Line Progress
+    // The line fills up as we scroll through the container
+    gsap.to(lineRef.current, {
+      height: "100%",
+      ease: "none",
       scrollTrigger: {
-        trigger: section,
-        pin: true,
-        scrub: 1,
-        end: "+=" + (totalWidth + viewportWidth * 0.5),
+        trigger: containerRef.current,
+        start: "top center",
+        end: "bottom center",
+        scrub: 0.5
       }
     });
 
-    // 1. Reveal (Fade Title)
-    tl.to(title, {
-      scale: 0.8,
-      opacity: 0,
-      filter: "blur(20px)",
-      duration: 1,
-      ease: "power2.in"
-    })
-    // 2. Horizontal Scroll
-    .to(container, {
-      x: xMovement,
-      ease: "none",
-      duration: 5
-    }, "-=0.5");
-
-    // 3. Draw Graph Line synchronized with scroll
-    const pathLength = path.getTotalLength();
-    gsap.set(path, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
-
-    // We animate the offset to 0 as we scroll
-    gsap.to(path, {
-        strokeDashoffset: 0,
-        ease: "none",
-        scrollTrigger: {
-            trigger: section,
-            start: "top top", // When section is pinned
-            end: "+=" + (totalWidth + viewportWidth * 0.5), // Match timeline
-            scrub: 1
-        }
+    // 2. Animate Steps (Focus Effect)
+    const stepElements = document.querySelectorAll('.hiw-step');
+    stepElements.forEach((step) => {
+      ScrollTrigger.create({
+        trigger: step,
+        start: "top center+=100", // When step hits center
+        end: "bottom center-=100",
+        toggleClass: { targets: step, className: "active" },
+        // scrub: true, // No scrub, just toggle state
+        onEnter: () => gsap.to(step, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3 }),
+        onLeave: () => gsap.to(step, { opacity: 0.2, scale: 0.9, filter: "blur(2px)", duration: 0.3 }),
+        onEnterBack: () => gsap.to(step, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3 }),
+        onLeaveBack: () => gsap.to(step, { opacity: 0.2, scale: 0.9, filter: "blur(2px)", duration: 0.3 }),
+      });
     });
 
-  }, { scope: sectionRef });
+  }, { scope: containerRef });
 
   return (
-    <section className="how-it-works" ref={sectionRef}>
-
-      <div className="hiw-intro">
-        <h2 className="hiw-intro-title" ref={titleRef}>
-          How It Works
-        </h2>
+    <section className="how-it-works">
+      <div className="hiw-header">
+        <h2 className="hiw-title">How It Works</h2>
+        <p>Your journey from user to asset.</p>
       </div>
 
-      <div className="hiw-container" ref={containerRef}>
-        {/* Graph SVG - absolutely positioned inside container so it moves with it?
-            Actually, if it's inside container, it moves WITH the cards.
-            We want it to draw progressively.
-        */}
-        <svg className="hiw-graph-svg" viewBox="0 0 2000 600" preserveAspectRatio="none">
-             {/*
-                Path coordinates approximation based on card positions + margins
-                01: ~100vw (start)
-                Gap: 200px
-                Cards: 350px
-             */}
-             <path
-                ref={pathRef}
-                d="M 100 300 C 300 300, 400 350, 600 350 S 800 250, 1000 250 S 1400 380, 1600 380 S 1900 200, 2100 200"
-                stroke="black"
-                strokeWidth="4"
-                fill="none"
-                vectorEffect="non-scaling-stroke"
-             />
-        </svg>
+      <div className="hiw-timeline-container" ref={containerRef}>
+        <div className="hiw-line-bg"></div>
+        <div className="hiw-line-progress" ref={lineRef}></div>
 
         {steps.map((step, index) => (
-          <div key={index} className="hiw-card">
-            <span className="hiw-num">{step.num}</span>
-            <h3 className="hiw-card-title">{step.title}</h3>
-            <p className="hiw-card-text">{step.text}</p>
+          <div key={index} className="hiw-step">
+            <div className="hiw-dot"></div>
+            <div className="hiw-content">
+              <span className="hiw-num">{step.num}</span>
+              <h3 className="hiw-step-title">{step.title}</h3>
+              <p className="hiw-step-text">{step.text}</p>
+            </div>
           </div>
         ))}
       </div>

@@ -1,22 +1,24 @@
 .market-leaderboard {
-  padding: 8rem 2rem;
+  padding: 8rem 0; /* Full width, no side padding on container */
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .leaderboard-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   position: relative;
   z-index: 2;
+  padding: 0 2rem;
 }
 
 .leaderboard-header h2 {
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 800;
   margin-bottom: 1rem;
   color: #1a1a1a;
@@ -25,78 +27,77 @@
 
 .leaderboard-header p {
   color: #666;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* Container */
+/* Container - Now broad and transparent */
 .leaderboard-container {
   width: 100%;
-  max-width: 1000px; /* Constrained for better readability */
-  background: #fff;
-  border-radius: 24px;
-  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.05);
+  max-width: 1600px; /* Much wider */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.04);
+  /* Removed card styles: background, border-radius, box-shadow, border */
+  padding: 0 4rem; /* Inner padding for content alignment */
 }
 
 /* Rows (Desktop) */
 .leaderboard-row {
   display: grid;
-  grid-template-columns: 80px 3fr 1.5fr 1.5fr; /* Fixed width for rank */
-  padding: 1.5rem 2rem;
+  grid-template-columns: 80px 3fr 1.5fr 1.5fr;
+  padding: 2rem 0; /* Vertical spacing only */
   align-items: center;
-  border-bottom: 1px solid #f5f5f5;
-  transition: background-color 0.2s;
+  border-bottom: 1px solid rgba(0,0,0,0.05); /* Very subtle divider */
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .leaderboard-row:last-child {
   border-bottom: none;
 }
 
+/* Hover effect for rows - subtle lift without card bg */
 .leaderboard-row.content:hover {
-  background-color: #fcfcfc;
+  transform: translateX(10px);
+  /* No background change, just movement */
 }
 
 .lb-head {
-  background: #fafafa;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: #999;
+  color: #aaa;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding-top: 1rem;
+  letter-spacing: 0.1em;
   padding-bottom: 1rem;
+  border-bottom: 2px solid #000; /* Distinct header line */
+  margin-bottom: 1rem;
 }
 
 .lb-rank {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #ccc;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #e0e0e0; /* Very light */
   font-feature-settings: "tnum";
 }
 
 .lb-user {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .lb-avatar {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: #eee;
+  background: #fff; /* White circle on gray bg */
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #555;
-  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .lb-info {
@@ -105,87 +106,73 @@
 }
 
 .lb-name {
-  font-weight: 600;
-  color: #1a1a1a;
-  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  font-size: 1.25rem;
 }
 
 .lb-handle {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #888;
 }
 
 .lb-price {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #000;
   font-feature-settings: "tnum";
 }
 
 .lb-change {
   font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
+  font-size: 1rem;
+  padding: 0; /* No pill bg */
   width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .change-positive {
   color: #00ba7c;
-  background: rgba(0, 186, 124, 0.1);
 }
 
 .change-negative {
   color: #f91880;
-  background: rgba(249, 24, 128, 0.1);
 }
 
 /* Mobile Responsive Design */
 @media (max-width: 768px) {
-  .market-leaderboard {
-    padding: 4rem 1.5rem;
+  .leaderboard-container {
+    padding: 0 1.5rem;
   }
 
   .leaderboard-header h2 {
     font-size: 2.5rem;
   }
 
-  /* Hide Header Row */
   .lb-head {
     display: none;
   }
 
   .leaderboard-row {
-    display: flex; /* Switch to flex for easier stacking/wrapping */
+    display: flex;
     flex-wrap: wrap;
-    padding: 1.5rem;
-    gap: 1rem;
-    position: relative;
+    padding: 1.5rem 0;
     justify-content: space-between;
+    gap: 1rem;
   }
 
   .lb-rank {
-    position: absolute;
-    top: 1.5rem;
-    left: 0.5rem;
-    font-size: 0.8rem;
-    width: 20px;
-    text-align: center;
-    opacity: 0.5;
+    display: none; /* Hide rank on mobile to clean up */
   }
 
   .lb-user {
     width: 100%;
-    margin-left: 1rem; /* Offset for rank */
-    margin-bottom: 0.5rem;
+    margin: 0;
   }
 
   .lb-price {
-    margin-left: 1rem;
     font-size: 1.2rem;
-  }
-
-  .lb-change {
-    font-size: 0.9rem;
   }
 }
