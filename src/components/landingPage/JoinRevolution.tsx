@@ -10,47 +10,48 @@ const JoinRevolution: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Scale effect for the background circle
-    gsap.fromTo(circleRef.current,
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top", // Starts when section hits top of viewport
+        end: "+=150%", // Pins for 1.5x viewport height
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1
+      }
+    });
+
+    // 1. Expand Circle to fill screen
+    tl.fromTo(circleRef.current,
       { scale: 0 },
       {
-        scale: 50,
+        scale: 40, // Enough to cover screen
+        duration: 2,
         ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          // Changed from "center center" to "bottom top"
-          // This significantly increases the scroll distance required to complete the animation
-          // making it feel slower/smoother.
-          end: "bottom top",
-          scrub: 1,
-        }
       }
     );
 
-    // Text reveal
-    gsap.fromTo(textRef.current,
+    // 2. Reveal Text (overlapping slightly with end of circle expansion)
+    tl.fromTo(contentRef.current,
       { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
         duration: 1,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 60%",
-          end: "center center",
-          scrub: 0.5,
-        }
-      }
+        ease: "power2.out"
+      },
+      "-=0.5" // Start 0.5s before circle finishes
     );
+
   }, { scope: containerRef });
 
   return (
     <section className="join-revolution" ref={containerRef}>
       <div className="bg-circle" ref={circleRef}></div>
-      <div className="join-content">
+      <div className="join-content" ref={contentRef}>
         <h2 ref={textRef}>The Future is <br/> <span>User Owned.</span></h2>
         <button className="join-btn">Join the Waitlist</button>
       </div>

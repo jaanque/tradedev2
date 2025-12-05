@@ -3,8 +3,8 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #1a1a1a;
-  color: #fff;
+  background-color: #f9f9f9; /* Light theme */
+  color: #1a1a1a;
 }
 
 /* Intro Title Container */
@@ -18,15 +18,17 @@
   justify-content: center;
   align-items: center;
   z-index: 10;
-  pointer-events: none; /* Allow clicks to pass through if necessary */
+  pointer-events: none;
 }
 
 .hiw-intro-title {
-  font-size: 10vw; /* Huge responsive title */
-  font-weight: 700;
+  font-size: 10vw;
+  font-weight: 800;
   text-align: center;
   line-height: 1;
   white-space: nowrap;
+  color: #1a1a1a;
+  letter-spacing: -0.05em;
 }
 
 /* Horizontal Scroll Container */
@@ -34,42 +36,65 @@
   display: flex;
   height: 100%;
   align-items: center;
-  padding-left: 100vw; /* Start with content off-screen to the right */
+  padding-left: 100vw;
   width: fit-content;
   will-change: transform;
 }
 
 .hiw-card {
-  width: 60vw;
+  width: 50vw; /* Slightly narrower for better focus */
+  max-width: 600px;
   flex-shrink: 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  padding-left: 4rem;
-  margin-right: 10vw; /* Gap between cards */
+  background: #fff;
+  border-radius: 24px;
+  padding: 4rem;
+  margin-right: 5vw;
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); /* Soft, professional shadow */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.hiw-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.1);
 }
 
 .hiw-num {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 1.5rem;
-  font-family: monospace;
+  color: #999;
+  margin-bottom: 2rem;
+  font-family: 'Inter', monospace;
+  font-weight: 600;
 }
 
 .hiw-card-title {
-  font-size: 5vw;
-  font-weight: 600;
-  margin-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   line-height: 1.1;
+  color: #000;
+  letter-spacing: -0.03em;
 }
 
 .hiw-card-text {
-  font-size: 1.5rem;
-  max-width: 600px;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 300;
+  font-size: 1.25rem;
+  color: #555;
+  font-weight: 400;
   line-height: 1.6;
+}
+
+/* Progress Bar at bottom */
+.hiw-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  background: #000;
+  width: 0%; /* Will be animated */
+  z-index: 20;
 }
 
 @media (max-width: 768px) {
@@ -78,10 +103,10 @@
   }
   .hiw-card {
     width: 85vw;
-    padding-left: 2rem;
+    padding: 2rem;
   }
   .hiw-card-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .hiw-card-text {
     font-size: 1.1rem;
