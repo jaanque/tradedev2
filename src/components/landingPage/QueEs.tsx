@@ -11,22 +11,39 @@ const textContent = "SocialStock no es solo una red social, es una revolución e
 const QueEs: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   // Split text into words safely
   const words = textContent.split(" ");
 
   useGSAP(() => {
     const wordElements = textRef.current?.querySelectorAll('.word');
-    if (!wordElements) return;
+    if (!wordElements || !titleRef.current) return;
 
+    // Title Animation
+    gsap.fromTo(titleRef.current,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%",
+        }
+      }
+    );
+
+    // Text Reveal Animation
     gsap.to(wordElements, {
-      color: "#1a1a1a", // Target color (Black/Dark Gray)
+      color: "#1a1a1a",
       stagger: 0.1,
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 80%", // Start animating when section enters view
-        end: "bottom 50%", // Finish when section is halfway up
-        scrub: 1, // Smooth scrubbing linked to scroll position
+        start: "top 75%",
+        end: "bottom 40%",
+        scrub: 1,
       }
     });
 
@@ -35,6 +52,7 @@ const QueEs: React.FC = () => {
   return (
     <section className="que-es" ref={containerRef}>
       <div className="que-es-container">
+        <h2 className="que-es-title" ref={titleRef}>El Concepto</h2>
         <p className="que-es-text" ref={textRef}>
           {words.map((word, index) => (
             <React.Fragment key={index}>

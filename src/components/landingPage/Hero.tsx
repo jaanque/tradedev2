@@ -7,37 +7,43 @@ const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  // Keyboard Interaction
+  // Mouse Interaction
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-        // Accelerate or shift based on key
-        if(e.key === "ArrowRight") {
-            gsap.to(gridRef.current, { rotationY: "+=5", duration: 0.5 });
-            gsap.to('.hero-bg-blob', { x: "+=50", duration: 1, ease: "power2.out" });
-        }
-        if(e.key === "ArrowLeft") {
-            gsap.to(gridRef.current, { rotationY: "-=5", duration: 0.5 });
-            gsap.to('.hero-bg-blob', { x: "-=50", duration: 1, ease: "power2.out" });
-        }
-        if(e.key === "ArrowUp") {
-             gsap.to(gridRef.current, { rotationX: "+=5", duration: 0.5 });
-             gsap.to('.hero-bg-blob', { y: "-=50", duration: 1, ease: "power2.out" });
-        }
-        if(e.key === "ArrowDown") {
-             gsap.to(gridRef.current, { rotationX: "-=5", duration: 0.5 });
-             gsap.to('.hero-bg-blob', { y: "+=50", duration: 1, ease: "power2.out" });
-        }
+    const handleMouseMove = (e: MouseEvent) => {
+        if (!gridRef.current) return;
+
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+
+        // Calculate normalized position (-1 to 1)
+        const xPos = (clientX / innerWidth - 0.5) * 2;
+        const yPos = (clientY / innerHeight - 0.5) * 2;
+
+        // Animate Grid Rotation
+        gsap.to(gridRef.current, {
+            rotationY: xPos * 10, // Rotate Y based on X position
+            rotationX: 60 + (yPos * -10), // Base 60deg tilt + mouse interaction
+            duration: 1,
+            ease: "power2.out"
+        });
+
+        // Animate Blobs (Parallax)
+        gsap.to('.hero-bg-blob', {
+            x: xPos * -60, // Move opposite to mouse
+            y: yPos * -60,
+            duration: 1.5,
+            ease: "power2.out"
+        });
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   useGSAP(() => {
-    // Subtle background animation
+    // Continuous subtle background animation
     gsap.to('.hero-bg-blob', {
-      x: "random(-50, 50)",
-      y: "random(-50, 50)",
+      scale: "random(0.8, 1.2)",
       duration: "random(10, 20)",
       ease: "sine.inOut",
       repeat: -1,
@@ -48,18 +54,6 @@ const Hero: React.FC = () => {
       }
     });
 
-    // Rotate slightly
-    gsap.to('.hero-bg-blob', {
-      rotation: "random(-20, 20)",
-      duration: "random(15, 25)",
-      ease: "sine.inOut",
-      repeat: -1,
-      yoyo: true,
-      stagger: {
-        amount: 5,
-        from: "random"
-      }
-    });
   }, { scope: containerRef });
 
   return (

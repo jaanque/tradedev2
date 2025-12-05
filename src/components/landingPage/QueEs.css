@@ -1,37 +1,66 @@
 .que-es {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 4rem 2rem;
+  padding: 8rem 2rem;
   background-color: #fafafa;
   position: relative;
 }
 
 .que-es-container {
   max-width: 1000px;
-  text-align: center; /* Left align can be better for reading, but centered often looks more "manifesto" like */
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.que-es-title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+  opacity: 0; /* Animated in */
+  position: relative;
+  display: inline-block;
+}
+
+.que-es-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: #1a1a1a;
 }
 
 .que-es-text {
-  font-size: 3rem; /* Large and readable */
-  line-height: 1.4;
+  font-size: 3.5rem;
+  line-height: 1.3;
   font-weight: 600;
-  color: #e0e0e0; /* Initial light gray */
-  letter-spacing: -0.02em;
+  color: #e6e6e6; /* Lighter start for better contrast transition */
+  letter-spacing: -0.03em;
   font-family: 'Inter', sans-serif;
-  flex-wrap: wrap;
+  margin: 0;
 }
 
-/* Words are wrapped in spans by React, styling handled there or generally here */
 .word {
   display: inline-block;
-  margin-right: 0.3em; /* Space between words */
-  transition: color 0.1s linear; /* Smoothness handled by GSAP usually */
+  margin-right: 0.25em;
+  will-change: color, transform;
 }
 
 @media (max-width: 768px) {
   .que-es-text {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    line-height: 1.4;
+  }
+  .que-es-title {
+    margin-bottom: 2rem;
   }
 }
