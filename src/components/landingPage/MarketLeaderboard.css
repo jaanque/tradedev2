@@ -1,5 +1,5 @@
 .market-leaderboard {
-  padding: 8rem 4rem;
+  padding: 8rem 2rem;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
@@ -10,50 +10,47 @@
 
 .leaderboard-header {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   position: relative;
   z-index: 2;
 }
 
 .leaderboard-header h2 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 800;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: #1a1a1a;
   letter-spacing: -0.04em;
 }
 
 .leaderboard-header p {
   color: #666;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   max-width: 600px;
   margin: 0 auto;
 }
 
+/* Container */
 .leaderboard-container {
   width: 100%;
-  max-width: 1400px; /* Significantly wider */
-  background: rgba(255, 255, 255, 0.8); /* Glassmorphic base */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 32px;
-  box-shadow:
-    0 40px 80px -20px rgba(0,0,0,0.08),
-    0 0 0 1px rgba(255,255,255,0.5) inset;
+  max-width: 1000px; /* Constrained for better readability */
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.02);
-  position: relative;
-  z-index: 2;
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
+/* Rows (Desktop) */
 .leaderboard-row {
   display: grid;
-  grid-template-columns: 0.5fr 3fr 1.5fr 1.5fr;
-  padding: 2rem 3rem;
+  grid-template-columns: 80px 3fr 1.5fr 1.5fr; /* Fixed width for rank */
+  padding: 1.5rem 2rem;
   align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,0.03);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
+  border-bottom: 1px solid #f5f5f5;
+  transition: background-color 0.2s;
 }
 
 .leaderboard-row:last-child {
@@ -61,129 +58,134 @@
 }
 
 .leaderboard-row.content:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  transform: scale(1.005);
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
-  z-index: 5;
+  background-color: #fcfcfc;
 }
 
 .lb-head {
+  background: #fafafa;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #999;
-  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  background: rgba(250,250,250,0.9);
+  letter-spacing: 0.05em;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .lb-rank {
+  font-size: 1.2rem;
   font-weight: 700;
-  color: #d1d1d1;
-  font-size: 1.5rem;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: -0.05em;
+  color: #ccc;
+  font-feature-settings: "tnum";
 }
 
 .lb-user {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .lb-avatar {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  background: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 1rem;
   color: #555;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  flex-shrink: 0;
 }
 
 .lb-info {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
 }
 
 .lb-name {
-  font-weight: 700;
+  font-weight: 600;
   color: #1a1a1a;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .lb-handle {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #888;
 }
 
 .lb-price {
-  font-weight: 700;
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 1.1rem;
   color: #1a1a1a;
   font-feature-settings: "tnum";
-  font-variant-numeric: tabular-nums;
 }
 
 .lb-change {
   font-weight: 600;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  min-width: 100px;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  width: fit-content;
 }
 
 .change-positive {
   color: #00ba7c;
-  background: rgba(0, 186, 124, 0.12);
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
+  background: rgba(0, 186, 124, 0.1);
 }
 
 .change-negative {
   color: #f91880;
-  background: rgba(249, 24, 128, 0.12);
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
+  background: rgba(249, 24, 128, 0.1);
 }
 
-@media (max-width: 1024px) {
-    .market-leaderboard {
-        padding: 6rem 2rem;
-    }
-}
-
+/* Mobile Responsive Design */
 @media (max-width: 768px) {
+  .market-leaderboard {
+    padding: 4rem 1.5rem;
+  }
+
   .leaderboard-header h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
-  .leaderboard-container {
-    width: 100%;
-    border-radius: 20px;
+
+  /* Hide Header Row */
+  .lb-head {
+    display: none;
   }
+
   .leaderboard-row {
-    grid-template-columns: 0.3fr 2fr 1fr;
+    display: flex; /* Switch to flex for easier stacking/wrapping */
+    flex-wrap: wrap;
     padding: 1.5rem;
     gap: 1rem;
+    position: relative;
+    justify-content: space-between;
   }
-  .lb-change {
-    display: none; /* Hide for cleanliness on mobile */
+
+  .lb-rank {
+    position: absolute;
+    top: 1.5rem;
+    left: 0.5rem;
+    font-size: 0.8rem;
+    width: 20px;
+    text-align: center;
+    opacity: 0.5;
   }
-  .lb-avatar {
-    width: 48px;
-    height: 48px;
-    font-size: 1rem;
+
+  .lb-user {
+    width: 100%;
+    margin-left: 1rem; /* Offset for rank */
+    margin-bottom: 0.5rem;
   }
-  .lb-name {
-      font-size: 1.1rem;
-  }
+
   .lb-price {
-      font-size: 1.1rem;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .lb-change {
+    font-size: 0.9rem;
   }
 }

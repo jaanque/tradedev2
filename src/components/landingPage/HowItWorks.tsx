@@ -33,14 +33,17 @@ const HowItWorks: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
 
   useGSAP(() => {
     const section = sectionRef.current;
     const container = containerRef.current;
     const title = titleRef.current;
+    const path = pathRef.current;
 
-    if (!section || !container || !title) return;
+    if (!section || !container || !title || !path) return;
 
+    // Calculate scroll width
     const totalWidth = container.scrollWidth;
     const viewportWidth = window.innerWidth;
     const xMovement = -(totalWidth - viewportWidth);
@@ -54,7 +57,7 @@ const HowItWorks: React.FC = () => {
       }
     });
 
-    // Phase 1: Reveal content by fading out title
+    // 1. Reveal (Fade Title)
     tl.to(title, {
       scale: 0.8,
       opacity: 0,
@@ -62,33 +65,33 @@ const HowItWorks: React.FC = () => {
       duration: 1,
       ease: "power2.in"
     })
-    // Phase 2: Slide in the horizontal content
+    // 2. Horizontal Scroll
     .to(container, {
       x: xMovement,
       ease: "none",
       duration: 5
     }, "-=0.5");
 
-    // Animate cards individually for a parallax/stagger effect while scrolling
-    gsap.utils.toArray<HTMLElement>('.hiw-card').forEach((card, i) => {
-        gsap.to(card, {
-            y: "random(-30, 30)",
-            rotation: "random(-2, 2)",
-            scrollTrigger: {
-                trigger: section,
-                start: "top top",
-                end: "bottom top",
-                scrub: 2
-            }
-        });
+    // 3. Draw Graph Line synchronized with scroll
+    const pathLength = path.getTotalLength();
+    gsap.set(path, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
+
+    // We animate the offset to 0 as we scroll
+    gsap.to(path, {
+        strokeDashoffset: 0,
+        ease: "none",
+        scrollTrigger: {
+            trigger: section,
+            start: "top top", // When section is pinned
+            end: "+=" + (totalWidth + viewportWidth * 0.5), // Match timeline
+            scrub: 1
+        }
     });
 
   }, { scope: sectionRef });
 
   return (
     <section className="how-it-works" ref={sectionRef}>
-      {/* Decorative Line in Background */}
-      <div className="hiw-line"></div>
 
       <div className="hiw-intro">
         <h2 className="hiw-intro-title" ref={titleRef}>
@@ -97,6 +100,27 @@ const HowItWorks: React.FC = () => {
       </div>
 
       <div className="hiw-container" ref={containerRef}>
+        {/* Graph SVG - absolutely positioned inside container so it moves with it?
+            Actually, if it's inside container, it moves WITH the cards.
+            We want it to draw progressively.
+        */}
+        <svg className="hiw-graph-svg" viewBox="0 0 2000 600" preserveAspectRatio="none">
+             {/*
+                Path coordinates approximation based on card positions + margins
+                01: ~100vw (start)
+                Gap: 200px
+                Cards: 350px
+             */}
+             <path
+                ref={pathRef}
+                d="M 100 300 C 300 300, 400 350, 600 350 S 800 250, 1000 250 S 1400 380, 1600 380 S 1900 200, 2100 200"
+                stroke="black"
+                strokeWidth="4"
+                fill="none"
+                vectorEffect="non-scaling-stroke"
+             />
+        </svg>
+
         {steps.map((step, index) => (
           <div key={index} className="hiw-card">
             <span className="hiw-num">{step.num}</span>
