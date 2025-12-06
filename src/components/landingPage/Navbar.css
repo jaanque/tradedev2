@@ -3,10 +3,10 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: #ffffff; /* Solid white, no transparency */
+  background: #ffffff;
   z-index: 1000;
   height: 64px;
-  border-bottom: 2px solid #000; /* Stronger, thicker border for robustness */
+  border-bottom: 2px solid #000;
   display: flex;
   justify-content: center;
   transition: all 0.3s ease;
@@ -22,18 +22,18 @@
   padding: 0 clamp(1rem, 4vw, 4rem);
   position: relative;
   z-index: 1001;
-  background: #ffffff; /* Solid */
+  background: #ffffff;
 }
 
 .navbar-logo {
-  font-weight: 900; /* Bolder */
-  font-size: 1.4rem;
+  font-weight: 900;
+  font-size: clamp(1.2rem, 2vw, 1.4rem); /* Fluid font size */
   letter-spacing: -0.05em;
   flex-shrink: 0;
   cursor: pointer;
   color: #000;
   z-index: 1002;
-  text-transform: uppercase; /* Robust */
+  text-transform: uppercase;
 }
 
 .navbar-desktop-auth {
@@ -49,9 +49,9 @@
   font-family: var(--font-family, sans-serif);
   font-size: 0.9rem;
   cursor: pointer;
-  padding: 0.5rem 1.2rem; /* Tighter padding */
+  padding: 0.5rem 1.2rem;
   transition: all 0.2s ease;
-  font-weight: 700; /* Bolder */
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -68,7 +68,7 @@
   background-color: #000;
   color: #fff;
   border: 2px solid #000;
-  border-radius: 4px; /* Square */
+  border-radius: 4px;
 }
 
 .btn-signup:hover {
@@ -80,7 +80,7 @@
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px; /* Tighter gap */
+  gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
@@ -91,7 +91,7 @@
 .hamburger span {
   display: block;
   width: 24px;
-  height: 3px; /* Thicker lines */
+  height: 3px;
   background-color: #000;
   transition: all 0.3s ease;
 }
@@ -111,8 +111,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  height: 100dvh; /* dvh for mobile browsers */
   background: #ffffff;
   z-index: 1000;
   display: flex;
@@ -133,24 +132,26 @@
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  width: 100%;
 }
 
 .btn-login-mobile, .btn-signup-mobile {
   font-family: var(--font-family, sans-serif);
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 5vw, 1.5rem); /* Responsive font size */
   padding: 1rem 2rem;
   border: none;
   background: none;
   cursor: pointer;
   font-weight: 800;
   text-transform: uppercase;
+  width: 80%; /* Wider touch target */
+  max-width: 300px;
 }
 
 .btn-signup-mobile {
   background-color: #000;
   color: #fff;
   border-radius: 4px;
-  padding: 1rem 3rem;
 }
 
 /* Responsive Logic */

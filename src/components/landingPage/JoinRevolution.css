@@ -1,6 +1,6 @@
 .join-revolution {
   width: 100%;
-  padding: 5rem 2rem; /* Reduced from 8rem */
+  padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 2rem);
   background-color: #000;
   color: #fff;
   display: flex;
@@ -16,7 +16,7 @@
   position: relative;
   z-index: 2;
   display: flex;
-  flex-direction: row; /* Horizontal layout for conciseness on desktop */
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -24,7 +24,7 @@
 }
 
 .join-content h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 6vw, 3rem); /* Fluid font size */
   line-height: 1.1;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -44,7 +44,7 @@
   padding: 1rem 2.5rem;
   font-size: 1rem;
   font-weight: 800;
-  border-radius: 4px; /* Robust square */
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: uppercase;
@@ -70,5 +70,12 @@
 
   .join-content h2 {
     text-align: center;
+  }
+
+  .join-btn {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
   }
 }

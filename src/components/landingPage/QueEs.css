@@ -1,6 +1,6 @@
 .que-es {
   width: 100%;
-  padding: 4rem 2rem; /* Reduced from 6rem */
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 2rem); /* Responsive padding */
   background-color: #fff;
   display: flex;
   justify-content: center;
@@ -8,13 +8,13 @@
 }
 
 .que-es-container {
-  max-width: 1000px; /* Wider for density */
+  max-width: 1000px;
   width: 100%;
   text-align: left;
 }
 
 .que-es-title {
-  font-size: 1.5rem; /* Smaller, more label-like */
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 800;
   color: #000;
   margin-bottom: 1rem;
@@ -24,9 +24,9 @@
 }
 
 .que-es-text {
-  font-size: clamp(1.1rem, 2vw, 1.5rem); /* Slightly smaller, more compact */
-  line-height: 1.4; /* Tighter line height */
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  line-height: 1.4;
   color: #1a1a1a;
   font-weight: 500;
-  text-align: justify; /* Solid block of text */
+  text-align: justify;
 }
