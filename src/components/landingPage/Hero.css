@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 50vh;
+  min-height: 60vh; /* Increased slightly for better visual balance */
   padding: 4rem 0;
   display: flex;
   justify-content: center;
@@ -12,33 +12,39 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
-/*
-  Refined Thematic Background: "Technical Growth Chart"
-  Uses a clean SVG data URI for perfect scaling and sharpness.
-  Represents a grid + a rising area chart.
-*/
+/* Remove old pseudo-element background */
 .hero::before {
-  content: "";
+  display: none;
+}
+
+/* New SVG Background Container */
+.hero-bg-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
-  /*
-     SVG Background:
-     1. A fine grid pattern.
-     2. A geometric "Step Chart" rising from left to right.
-  */
-  background-image: url("data:image/svg+xml,%3Csvg width='1440' height='800' viewBox='0 0 1440 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%23f0f0f0' stroke-width='1'/%3E%3C/pattern%3E%3ClinearGradient id='chartGradient' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f5f5f5' /%3E%3Cstop offset='100%25' stop-color='%23ffffff' stop-opacity='0' /%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- Grid Background --%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C!-- Rising Step Chart --%3E%3Cpath d='M0 800 L0 600 L200 600 L200 500 L400 500 L400 450 L600 450 L600 300 L800 300 L800 200 L1000 200 L1000 100 L1200 100 L1200 50 L1440 50 L1440 800 Z' fill='url(%23chartGradient)' stroke='%23e0e0e0' stroke-width='2' /%3E%3C/svg%3E");
-
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  opacity: 1;
   z-index: 0;
+  pointer-events: none; /* Ensure clicks go through to buttons */
 }
 
+.hero-bg-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Subtle CSS Animations for the 'Creative' feel */
+@keyframes floatNode {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-node {
+  animation: floatNode 6s ease-in-out infinite;
+}
+
+/* Content Styling (kept consistent) */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -59,6 +65,7 @@
   color: #000;
   margin: 0;
   text-transform: uppercase;
+  /* Add a slight background for better legibility if needed, currently relies on SVG fade */
 }
 
 .hero-subtitle {
