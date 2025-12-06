@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
           <rect width="100%" height="100%" fill="url(#gridPattern)" />
 
           {/* Main Chart Group - Positioned to the Right and Lowered */}
-          <g transform="translate(700, 200) scale(1.1)">
+          <g transform="translate(900, 300) scale(1.1)">
              {/* Bar 1 */}
              <path d="M0 350 L40 310 L180 310 L140 350 Z" fill="#000" stroke="none" />
              <path d="M140 350 L180 310 L180 460 L140 500 Z" fill="#000" stroke="none" />
