@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 60vh; /* Increased slightly for better visual balance */
+  min-height: 60vh;
   padding: 4rem 0;
   display: flex;
   justify-content: center;
@@ -12,12 +12,6 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
-/* Remove old pseudo-element background */
-.hero::before {
-  display: none;
-}
-
-/* New SVG Background Container */
 .hero-bg-wrapper {
   position: absolute;
   top: 0;
@@ -25,7 +19,7 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  pointer-events: none; /* Ensure clicks go through to buttons */
+  pointer-events: none;
 }
 
 .hero-bg-svg {
@@ -34,17 +28,6 @@
   display: block;
 }
 
-/* Subtle CSS Animations for the 'Creative' feel */
-@keyframes floatNode {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.floating-node {
-  animation: floatNode 6s ease-in-out infinite;
-}
-
-/* Content Styling (kept consistent) */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -65,7 +48,6 @@
   color: #000;
   margin: 0;
   text-transform: uppercase;
-  /* Add a slight background for better legibility if needed, currently relies on SVG fade */
 }
 
 .hero-subtitle {
