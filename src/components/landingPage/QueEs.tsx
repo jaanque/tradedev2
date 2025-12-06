@@ -7,7 +7,11 @@ const QueEs: React.FC = () => {
       <div className="que-es-container">
         <h2 className="que-es-title">El Concepto</h2>
         <p className="que-es-text">
-          SocialStock no es solo una red social, es una revolución económica. Imagina un mundo donde tu creatividad tiene un valor tangible. Cada interacción, cada seguidor, cada contenido viral incrementa tu valor en el mercado. Aquí, no solo sigues a tus ídolos, inviertes en su potencial y creces con ellos. Bienvenido a la nueva era de la influencia digital.
+          SocialStock es donde la comunidad developer finalmente obtiene el valor que merece. No somos solo una red social; somos la Bolsa de Valores del Conocimiento. Olvídate de los seguidores pasivos: tus admiradores son ahora Accionistas que invierten sus Tokens en ti.
+        </p>
+        <br />
+        <p className="que-es-text">
+          Gana Tokens resolviendo retos épicos y compartiendo tus mejores insights. Invierte esos Tokens en el talento que te inspira y, a cambio, desbloquea su contenido más preciado: repositorios secretos, decisiones de arquitectura inéditas y Q&A solo para inversores.
         </p>
       </div>
     </section>

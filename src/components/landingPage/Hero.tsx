@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
 
           {/* Main Chart Group - Positioned to the Right and Lowered */}
           {/* Translating to x=750 starts the graph on the right half. y=200 lowers it. */}
-          <g transform="translate(750, 250) scale(1.1)">
+          <g transform="translate(750, 257) scale(1.1)">
              {/* Area Fill */}
              <path
                d="M0 500 L0 400 Q 150 420 250 300 T 500 200 T 750 150 V 500 Z"

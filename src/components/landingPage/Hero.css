@@ -81,10 +81,9 @@
 }
 
 .cta-primary:hover {
-  background-color: #333;
-  border-color: #333;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
 }
 
 .cta-secondary {
