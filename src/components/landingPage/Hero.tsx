@@ -25,31 +25,21 @@ const Hero: React.FC = () => {
           <rect width="100%" height="100%" fill="url(#gridPattern)" />
 
           {/* Main Chart Group - Positioned to the Right and Lowered */}
-          {/* Translating to x=750 starts the graph on the right half. y=200 lowers it. */}
-          <g transform="translate(750, 400) scale(1.1)">
-             {/* Area Fill */}
-             <path
-               d="M0 500 L0 400 Q 150 420 250 300 T 500 200 T 750 150 V 500 Z"
-               fill="url(#areaGrad)"
-             />
+          <g transform="translate(700, 200) scale(1.1)">
+             {/* Bar 1 */}
+             <path d="M0 350 L40 310 L180 310 L140 350 Z" fill="#000" stroke="none" />
+             <path d="M140 350 L180 310 L180 460 L140 500 Z" fill="#000" stroke="none" />
+             <path d="M0 350 L140 350 L140 500 L0 500 Z" fill="#fff" stroke="#000" strokeWidth="6" />
 
-             {/* The Rising Line */}
-             <path
-               d="M0 400 Q 150 420 250 300 T 500 200 T 750 150"
-               fill="none"
-               stroke="#000"
-               strokeWidth="8"
-               strokeLinecap="round"
-               strokeLinejoin="round"
-             />
+             {/* Bar 2 */}
+             <path d="M200 250 L240 210 L380 210 L340 250 Z" fill="#000" stroke="none" />
+             <path d="M340 250 L380 210 L380 460 L340 500 Z" fill="#000" stroke="none" />
+             <path d="M200 250 L340 250 L340 500 L200 500 Z" fill="#fff" stroke="#000" strokeWidth="6" />
 
-             {/* End Dot */}
-             <circle cx="750" cy="150" r="12" fill="#000" />
-             <circle cx="750" cy="150" r="25" fill="none" stroke="#000" strokeWidth="2" opacity="0.2" />
-
-             {/* Data Points / Highlight markers */}
-             <circle cx="250" cy="300" r="6" fill="#fff" stroke="#000" strokeWidth="3" />
-             <circle cx="500" cy="200" r="6" fill="#fff" stroke="#000" strokeWidth="3" />
+             {/* Bar 3 */}
+             <path d="M400 100 L440 60 L580 60 L540 100 Z" fill="#000" stroke="none" />
+             <path d="M540 100 L580 60 L580 460 L540 500 Z" fill="#000" stroke="none" />
+             <path d="M400 100 L540 100 L540 500 L400 500 Z" fill="#fff" stroke="#000" strokeWidth="6" />
           </g>
         </svg>
       </div>
