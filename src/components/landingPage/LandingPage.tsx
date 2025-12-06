@@ -5,6 +5,7 @@ import UserTicker from './UserTicker';
 import QueEs from './QueEs';
 import ComoFunciona from './ComoFunciona';
 import Beneficios from './Beneficios';
+import Testimonios from './Testimonios';
 import JoinRevolution from './JoinRevolution';
 import Footer from './Footer';
 
@@ -17,6 +18,7 @@ const LandingPage: React.FC = () => {
       <QueEs />
       <ComoFunciona />
       <Beneficios />
+      <Testimonios />
       <JoinRevolution />
       <Footer />
     </div>

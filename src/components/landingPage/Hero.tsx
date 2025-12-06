@@ -1,6 +1,38 @@
 import React from 'react';
 import './Hero.css';
 
+interface Bar3DProps {
+  x: number;
+  yTop: number;
+  width: number;
+  yBase: number;
+  depth: number;
+  delay?: number;
+}
+
+const Bar3D: React.FC<Bar3DProps> = ({ x, yTop, width, yBase, depth, delay = 0 }) => {
+  const xBack = x + depth;
+  const yBackTop = yTop - depth;
+  const yBackBase = yBase - depth;
+
+  // Front Face
+  const frontPath = `M${x} ${yTop} L${x + width} ${yTop} L${x + width} ${yBase} L${x} ${yBase} Z`;
+
+  // Top Face
+  const topPath = `M${x} ${yTop} L${xBack} ${yBackTop} L${xBack + width} ${yBackTop} L${x + width} ${yTop} Z`;
+
+  // Side Face
+  const sidePath = `M${x + width} ${yTop} L${xBack + width} ${yBackTop} L${xBack + width} ${yBackBase} L${x + width} ${yBase} Z`;
+
+  return (
+    <g className="hero-bar-group" style={{ '--anim-delay': `${delay}s` } as React.CSSProperties}>
+      <path className="bar-top" d={topPath} fill="#000" stroke="none" />
+      <path className="bar-side" d={sidePath} fill="#000" stroke="none" />
+      <path className="bar-front" d={frontPath} fill="#fff" stroke="#000" strokeWidth="6" />
+    </g>
+  );
+};
+
 const Hero: React.FC = () => {
   return (
     <section className="hero">
@@ -26,20 +58,9 @@ const Hero: React.FC = () => {
 
           {/* Main Chart Group - Positioned to the Right and Lowered */}
           <g transform="translate(900, 300) scale(1.1)">
-             {/* Bar 1 */}
-             <path d="M0 350 L40 310 L180 310 L140 350 Z" fill="#000" stroke="none" />
-             <path d="M140 350 L180 310 L180 460 L140 500 Z" fill="#000" stroke="none" />
-             <path d="M0 350 L140 350 L140 500 L0 500 Z" fill="#fff" stroke="#000" strokeWidth="6" />
-
-             {/* Bar 2 */}
-             <path d="M200 250 L240 210 L380 210 L340 250 Z" fill="#000" stroke="none" />
-             <path d="M340 250 L380 210 L380 460 L340 500 Z" fill="#000" stroke="none" />
-             <path d="M200 250 L340 250 L340 500 L200 500 Z" fill="#fff" stroke="#000" strokeWidth="6" />
-
-             {/* Bar 3 */}
-             <path d="M400 100 L440 60 L580 60 L540 100 Z" fill="#000" stroke="none" />
-             <path d="M540 100 L580 60 L580 460 L540 500 Z" fill="#000" stroke="none" />
-             <path d="M400 100 L540 100 L540 500 L400 500 Z" fill="#fff" stroke="#000" strokeWidth="6" />
+             <Bar3D x={0} yTop={350} width={140} yBase={500} depth={40} delay={0.1} />
+             <Bar3D x={200} yTop={250} width={140} yBase={500} depth={40} delay={0.2} />
+             <Bar3D x={400} yTop={100} width={140} yBase={500} depth={40} delay={0.3} />
           </g>
         </svg>
       </div>

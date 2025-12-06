@@ -117,6 +117,24 @@
     padding-bottom: 5rem;
   }
 
+  .hero-bar-group {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+
+  .hero-bar-group:hover {
+    transform: translate(10px, -10px); /* Move along the projection vector (approx) or just up */
+  }
+
+  /* Make the hover effect move diagonally to match perspective (up and right)
+     Since depth is +x, -y (right, up), moving 'out' towards viewer would be -x, +y?
+     Wait, the depth goes back (+40, -40).
+     To lift it UP (y decrease), we just do -y.
+  */
+  .hero-bar-group:hover {
+    transform: translateY(-20px);
+  }
+
   .hero-bg-wrapper {
     width: 100%;
     opacity: 0.15;
