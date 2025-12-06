@@ -15,8 +15,8 @@
 .hero-bg-wrapper {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 55%; /* Slightly reduced to accommodate wider text */
+  left: 0; /* Full width */
+  width: 100%; /* Full width */
   height: 100%;
   z-index: 0;
   pointer-events: none;
@@ -32,7 +32,7 @@
   position: relative;
   z-index: 1;
   text-align: left;
-  max-width: 750px; /* Increased width */
+  max-width: 750px;
   padding: 0 4rem;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Scaled up slightly */
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1;
   font-weight: 900;
   letter-spacing: -0.04em;
@@ -55,7 +55,7 @@
   font-size: clamp(1rem, 1.5vw, 1.3rem);
   line-height: 1.5;
   color: #444;
-  max-width: 600px; /* Increased subtitle width */
+  max-width: 600px;
   font-weight: 500;
   margin: 0;
 }
@@ -114,6 +114,9 @@
   }
 
   .hero-bg-wrapper {
+    /* On mobile, maybe keep it full width but push graph?
+       Actually with viewBox it handles itself, but we might want opacity lower.
+    */
     width: 100%;
     opacity: 0.15;
   }
