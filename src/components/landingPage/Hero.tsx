@@ -12,19 +12,19 @@ const Hero: React.FC = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <linearGradient id="cityGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#f5f5f5" />
+            <linearGradient id="towerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#f0f0f0" />
               <stop offset="100%" stopColor="#e0e0e0" />
             </linearGradient>
-             <linearGradient id="cityGradHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+             <linearGradient id="headGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#333" />
               <stop offset="100%" stopColor="#000" />
             </linearGradient>
-            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur in="SourceAlpha" stdDeviation="5" />
-              <feOffset dx="5" dy="5" result="offsetblur"/>
+            <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+              <feOffset dx="3" dy="3" result="offsetblur"/>
               <feComponentTransfer>
-                <feFuncA type="linear" slope="0.2"/>
+                <feFuncA type="linear" slope="0.3"/>
               </feComponentTransfer>
               <feMerge>
                 <feMergeNode/>
@@ -33,45 +33,55 @@ const Hero: React.FC = () => {
             </filter>
           </defs>
 
-          {/* Main City Cluster Group */}
-          <g transform="translate(500, 600) scale(1.2)">
+          {/* Main Group: The Human Stock Market */}
+          <g transform="translate(500, 550) scale(1.3)">
 
-             {/* Background blocks (Context) */}
-             <path d="M-300 100 L-250 125 L-200 100 L-250 75 Z" fill="#f8f8f8" />
-             <path d="M300 50 L350 75 L300 100 L250 75 Z" fill="#f8f8f8" />
+             {/* Base Platform Grid */}
+             <path d="M-300 100 L0 250 L300 100 L0 -50 Z" fill="none" stroke="#f0f0f0" strokeWidth="2" />
 
-             {/* Block 1: Left Tower */}
+             {/* Person-Stock 1 (Left, Starter) */}
              <g transform="translate(-150, 50)">
-                <path d="M0 -100 L50 -75 L50 -25 L0 -50 L-50 -25 L-50 -75 Z" fill="url(#cityGrad)" stroke="#dcdcdc" />
-                <path d="M0 -50 L0 100 L50 125 L50 -25" fill="#eeeeee" />
-                <path d="M0 -50 L-50 -25 L-50 125 L0 100" fill="#dddddd" />
+                {/* Pillar */}
+                <path d="M0 0 L40 -20 L40 60 L0 80 L-40 60 L-40 -20 Z" fill="url(#towerGrad)" stroke="#dcdcdc" />
+                <path d="M0 80 L0 0" stroke="#dcdcdc" />
+                {/* Top Surface */}
+                <path d="M0 0 L40 -20 L0 -40 L-40 -20 Z" fill="#ffffff" stroke="#dcdcdc" />
+                {/* Avatar Head */}
+                <circle cx="0" cy="-70" r="25" fill="#dcdcdc" filter="url(#dropShadow)" />
              </g>
 
-             {/* Block 2: Center Main Tower (Dark Accent) */}
-             <g transform="translate(0, -50)">
-                <path d="M0 -150 L60 -120 L60 -20 L0 -50 L-60 -20 L-60 -120 Z" fill="#222" stroke="#000" />
-                <path d="M0 -50 L0 150 L60 180 L60 -20" fill="#111" />
-                <path d="M0 -50 L-60 -20 L-60 180 L0 150" fill="#000" />
-                {/* Windows/Detail */}
-                <path d="M-40 0 L-20 -10 M-40 20 L-20 10 M-40 40 L-20 30" stroke="#444" strokeWidth="2" />
-             </g>
-
-             {/* Block 3: Right Tower */}
+             {/* Person-Stock 2 (Right, Growing) */}
              <g transform="translate(140, 40)">
-                <path d="M0 -120 L50 -95 L50 -25 L0 -50 L-50 -25 L-50 -95 Z" fill="url(#cityGrad)" stroke="#dcdcdc" />
-                <path d="M0 -50 L0 120 L50 145 L50 -25" fill="#eeeeee" />
-                <path d="M0 -50 L-50 -25 L-50 145 L0 120" fill="#dddddd" />
+                {/* Pillar */}
+                <path d="M0 -50 L40 -70 L40 100 L0 120 L-40 100 L-40 -70 Z" fill="url(#towerGrad)" stroke="#dcdcdc" />
+                <path d="M0 120 L0 -50" stroke="#dcdcdc" />
+                 {/* Top Surface */}
+                <path d="M0 -50 L40 -70 L0 -90 L-40 -70 Z" fill="#ffffff" stroke="#dcdcdc" />
+                {/* Avatar Head */}
+                <circle cx="0" cy="-120" r="25" fill="#bbbbbb" filter="url(#dropShadow)" />
              </g>
 
-             {/* Block 4: Foreground Low */}
-             <g transform="translate(0, 100)">
-                <path d="M0 -40 L40 -20 L40 20 L0 0 L-40 20 L-40 -20 Z" fill="#ffffff" stroke="#dcdcdc" />
-                <path d="M0 0 L0 40 L40 60 L40 20" fill="#f0f0f0" />
-                <path d="M0 0 L-40 20 L-40 60 L0 40" fill="#e0e0e0" />
+             {/* Person-Stock 3 (Center, The Unicorn/Star) */}
+             <g transform="translate(0, -20)">
+                {/* Pillar (Taller) */}
+                <path d="M0 -100 L50 -125 L50 150 L0 175 L-50 150 L-50 -125 Z" fill="#222" stroke="#000" />
+                <path d="M0 175 L0 -100" stroke="#333" />
+                {/* Top Surface */}
+                <path d="M0 -100 L50 -125 L0 -150 L-50 -125 Z" fill="#444" stroke="#333" />
+                {/* Avatar Head (Dominant) */}
+                <circle cx="0" cy="-200" r="35" fill="url(#headGrad)" filter="url(#dropShadow)" />
+                {/* Shoulders hint? */}
+                <path d="M-20 -160 Q 0 -150 20 -160" stroke="#666" strokeWidth="3" fill="none" />
              </g>
 
-             {/* Abstract Grid Lines connecting them */}
-             <path d="M-150 125 L0 200 L140 145" fill="none" stroke="#e0e0e0" strokeWidth="2" strokeDasharray="5,5" />
+             {/* Connection Line (Graph) */}
+             <polyline points="-150,-70 0,-200 140,-120" fill="none" stroke="#000" strokeWidth="4" strokeLinecap="round" strokeDasharray="10,10" />
+
+             {/* Rising Trend Arrow */}
+             <g transform="translate(180, -180)">
+                <path d="M0 0 L20 -20 L40 0 M20 -20 L20 40" stroke="#000" strokeWidth="3" fill="none" />
+             </g>
+
           </g>
         </svg>
       </div>

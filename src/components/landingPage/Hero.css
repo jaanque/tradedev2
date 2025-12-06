@@ -1,11 +1,11 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 70vh; /* Increased for better desktop presence */
+  min-height: 70vh;
   padding: 4rem 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align content to the start (left) */
+  justify-content: flex-start;
   background-color: #ffffff;
   overflow: hidden;
   padding-top: calc(64px + 3rem);
@@ -15,8 +15,8 @@
 .hero-bg-wrapper {
   position: absolute;
   top: 0;
-  right: 0; /* Anchor to right */
-  width: 60%; /* Take up right side */
+  right: 0;
+  width: 55%; /* Slightly reduced to accommodate wider text */
   height: 100%;
   z-index: 0;
   pointer-events: none;
@@ -32,17 +32,17 @@
   position: relative;
   z-index: 1;
   text-align: left;
-  max-width: 600px;
-  padding: 0 4rem; /* Left padding */
+  max-width: 750px; /* Increased width */
+  padding: 0 4rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Left align items */
+  align-items: flex-start;
   gap: 1.5rem;
-  margin-left: 5%; /* Offset from left edge */
+  margin-left: 5%;
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem); /* Slightly larger */
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Scaled up slightly */
   line-height: 1;
   font-weight: 900;
   letter-spacing: -0.04em;
@@ -52,10 +52,10 @@
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
   line-height: 1.5;
   color: #444;
-  max-width: 500px;
+  max-width: 600px; /* Increased subtitle width */
   font-weight: 500;
   margin: 0;
 }
@@ -115,7 +115,7 @@
 
   .hero-bg-wrapper {
     width: 100%;
-    opacity: 0.15; /* Fade background on mobile to readable text */
+    opacity: 0.15;
   }
 
   .hero-content {
