@@ -13,7 +13,11 @@
   border-bottom: 1px solid #e0e0e0; /* Solid boundary */
 }
 
-/* Grid pattern made sharper for robustness */
+/*
+  Thematic Background: Abstract "Stock Chart" + "Network"
+  A subtle pattern of vertical lines (market volume) rising up
+  and a grid representing the market structure.
+*/
 .hero::before {
   content: "";
   position: absolute;
@@ -21,12 +25,50 @@
   left: 0;
   width: 100%;
   height: 100%;
+
+  /* Base Grid */
   background-image:
-    linear-gradient(#e5e5e5 1px, transparent 1px),
-    linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
-  background-size: 32px 32px; /* Tighter grid */
-  opacity: 0.6;
+    linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+    linear-gradient(to bottom, #f0f0f0 1px, transparent 1px),
+    /* Abstract Rising "Candles" / Bars */
+    linear-gradient(to top, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.03) 40%, transparent 40%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.02) 60%, transparent 60%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 30%, transparent 30%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.01) 80%, transparent 80%);
+
+  background-size:
+    40px 40px, /* Grid Size */
+    40px 40px, /* Grid Size */
+    120px 100%, /* Bar 1 Width/Height */
+    200px 100%, /* Bar 2 Width/Height */
+    80px 100%,  /* Bar 3 Width/Height */
+    160px 100%; /* Bar 4 Width/Height */
+
+  background-position:
+    0 0,
+    0 0,
+    10% 0, /* Random positions for bars */
+    40% 0,
+    70% 0,
+    90% 0;
+
+  opacity: 1;
   z-index: 0;
+}
+
+/* Add a subtle "Upward Trend" line overlay */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(135deg, transparent 40%, rgba(0, 186, 124, 0.05) 40%, rgba(0, 186, 124, 0.05) 60%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .hero-content {
