@@ -1,22 +1,21 @@
 .hero {
   position: relative;
   width: 100%;
-  /* Reduced height for conciseness */
   min-height: 50vh;
-  padding: 4rem 0; /* Fixed padding instead of VH dependence */
+  padding: 4rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
   overflow: hidden;
-  padding-top: calc(64px + 3rem); /* Navbar offset + spacing */
-  border-bottom: 1px solid #e0e0e0; /* Solid boundary */
+  padding-top: calc(64px + 3rem);
+  border-bottom: 1px solid #e0e0e0;
 }
 
 /*
-  Thematic Background: Abstract "Stock Chart" + "Network"
-  A subtle pattern of vertical lines (market volume) rising up
-  and a grid representing the market structure.
+  Refined Thematic Background: "Technical Growth Chart"
+  Uses a clean SVG data URI for perfect scaling and sharpness.
+  Represents a grid + a rising area chart.
 */
 .hero::before {
   content: "";
@@ -26,78 +25,46 @@
   width: 100%;
   height: 100%;
 
-  /* Base Grid */
-  background-image:
-    linear-gradient(to right, #f0f0f0 1px, transparent 1px),
-    linear-gradient(to bottom, #f0f0f0 1px, transparent 1px),
-    /* Abstract Rising "Candles" / Bars */
-    linear-gradient(to top, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.03) 40%, transparent 40%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.02) 60%, transparent 60%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 30%, transparent 30%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.01) 80%, transparent 80%);
+  /*
+     SVG Background:
+     1. A fine grid pattern.
+     2. A geometric "Step Chart" rising from left to right.
+  */
+  background-image: url("data:image/svg+xml,%3Csvg width='1440' height='800' viewBox='0 0 1440 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%23f0f0f0' stroke-width='1'/%3E%3C/pattern%3E%3ClinearGradient id='chartGradient' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f5f5f5' /%3E%3Cstop offset='100%25' stop-color='%23ffffff' stop-opacity='0' /%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- Grid Background --%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C!-- Rising Step Chart --%3E%3Cpath d='M0 800 L0 600 L200 600 L200 500 L400 500 L400 450 L600 450 L600 300 L800 300 L800 200 L1000 200 L1000 100 L1200 100 L1200 50 L1440 50 L1440 800 Z' fill='url(%23chartGradient)' stroke='%23e0e0e0' stroke-width='2' /%3E%3C/svg%3E");
 
-  background-size:
-    40px 40px, /* Grid Size */
-    40px 40px, /* Grid Size */
-    120px 100%, /* Bar 1 Width/Height */
-    200px 100%, /* Bar 2 Width/Height */
-    80px 100%,  /* Bar 3 Width/Height */
-    160px 100%; /* Bar 4 Width/Height */
-
-  background-position:
-    0 0,
-    0 0,
-    10% 0, /* Random positions for bars */
-    40% 0,
-    70% 0,
-    90% 0;
-
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
   opacity: 1;
   z-index: 0;
-}
-
-/* Add a subtle "Upward Trend" line overlay */
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    linear-gradient(135deg, transparent 40%, rgba(0, 186, 124, 0.05) 40%, rgba(0, 186, 124, 0.05) 60%, transparent 60%);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.5;
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 1000px; /* Wider for more impact/density */
+  max-width: 1000px;
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem; /* Tighter gap */
+  gap: 1.5rem;
 }
 
 .hero-title {
-  /* Slightly smaller max size, but heavier/denser */
   font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.1;
-  font-weight: 900; /* Heavier */
+  font-weight: 900;
   letter-spacing: -0.04em;
-  color: #000; /* Pure black */
+  color: #000;
   margin: 0;
-  text-transform: uppercase; /* More robust/solid feel */
+  text-transform: uppercase;
 }
 
 .hero-subtitle {
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   line-height: 1.5;
-  color: #444; /* Darker grey */
+  color: #444;
   max-width: 700px;
   font-weight: 500;
   margin: 0;
@@ -113,10 +80,10 @@
   background-color: #000;
   color: #fff;
   border: 2px solid #000;
-  padding: 0.8rem 2rem; /* More compact */
+  padding: 0.8rem 2rem;
   font-size: 1rem;
   font-weight: 700;
-  border-radius: 4px; /* Square/Robust */
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: uppercase;
