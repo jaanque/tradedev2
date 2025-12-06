@@ -1,16 +1,19 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 80vh; /* Reduced from maybe full screen to be more compact/solid */
+  /* Reduced height for conciseness */
+  min-height: 50vh;
+  padding: 4rem 0; /* Fixed padding instead of VH dependence */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff; /* Solid white background */
+  background-color: #ffffff;
   overflow: hidden;
-  padding-top: 64px; /* Navbar offset */
+  padding-top: calc(64px + 3rem); /* Navbar offset + spacing */
+  border-bottom: 1px solid #e0e0e0; /* Solid boundary */
 }
 
-/* Optional subtle background pattern instead of animated blobs for "robustness" */
+/* Grid pattern made sharper for robustness */
 .hero::before {
   content: "";
   position: absolute;
@@ -19,10 +22,10 @@
   width: 100%;
   height: 100%;
   background-image:
-    linear-gradient(#f0f0f0 1px, transparent 1px),
-    linear-gradient(90deg, #f0f0f0 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.5;
+    linear-gradient(#e5e5e5 1px, transparent 1px),
+    linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+  background-size: 32px 32px; /* Tighter grid */
+  opacity: 0.6;
   z-index: 0;
 }
 
@@ -30,70 +33,76 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 900px;
+  max-width: 1000px; /* Wider for more impact/density */
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem; /* Tighter gap */
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  /* Slightly smaller max size, but heavier/denser */
+  font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #1a1a1a;
+  font-weight: 900; /* Heavier */
+  letter-spacing: -0.04em;
+  color: #000; /* Pure black */
   margin: 0;
+  text-transform: uppercase; /* More robust/solid feel */
 }
 
 .hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  line-height: 1.6;
-  color: #555;
-  max-width: 650px;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.5;
+  color: #444; /* Darker grey */
+  max-width: 700px;
+  font-weight: 500;
   margin: 0;
 }
 
 .hero-cta {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
 }
 
 .cta-primary {
-  background-color: #1a1a1a;
+  background-color: #000;
   color: #fff;
-  border: none;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 8px; /* Slightly squarer for robustness */
+  border: 2px solid #000;
+  padding: 0.8rem 2rem; /* More compact */
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 4px; /* Square/Robust */
   cursor: pointer;
   transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .cta-primary:hover {
-  background-color: #000;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background-color: #333;
+  border-color: #333;
+  transform: translateY(-1px);
 }
 
 .cta-secondary {
-  background-color: transparent;
-  color: #1a1a1a;
+  background-color: #fff;
+  color: #000;
   border: 2px solid #e0e0e0;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .cta-secondary:hover {
-  border-color: #1a1a1a;
-  background-color: #f9f9f9;
+  border-color: #000;
 }
 
 /* Responsive */
@@ -101,6 +110,7 @@
   .hero-cta {
     flex-direction: column;
     width: 100%;
+    gap: 0.5rem;
   }
 
   .cta-primary, .cta-secondary {
