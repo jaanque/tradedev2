@@ -41,7 +41,6 @@
 
 .step-card:hover {
   border-color: #fff;
-  transform: translateY(-5px);
 }
 
 .step-number {
