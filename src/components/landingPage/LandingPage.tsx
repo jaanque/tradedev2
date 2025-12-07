@@ -8,6 +8,7 @@ import Beneficios from './Beneficios';
 import Testimonios from './Testimonios';
 import JoinRevolution from './JoinRevolution';
 import Footer from './Footer';
+import Reveal from '../ui/Reveal';
 
 const LandingPage: React.FC = () => {
   return (
@@ -15,11 +16,27 @@ const LandingPage: React.FC = () => {
       <Navbar />
       <Hero />
       <UserTicker />
-      <QueEs />
-      <ComoFunciona />
-      <Beneficios />
-      <Testimonios />
-      <JoinRevolution />
+
+      <Reveal>
+        <QueEs />
+      </Reveal>
+
+      <Reveal>
+        <ComoFunciona />
+      </Reveal>
+
+      <Reveal>
+        <Beneficios />
+      </Reveal>
+
+      <Reveal>
+        <Testimonios />
+      </Reveal>
+
+      <Reveal>
+        <JoinRevolution />
+      </Reveal>
+
       <Footer />
     </div>
   );
